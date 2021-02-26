@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="fileMapper">
+
+	<insert id="register" parameterType="fvo">
+		insert into tbl_file(ano ,uuid,savedir,fname,ftype)values(#{ano}, #{uuid}, #{savedir}, #{fname}, #{ftype})
+	</insert>
+	<select id="filelist" parameterType="java.lang.Integer" resultType="fvo">
+	
+	select uuid, ano,fname,ftype,savedir from tbl_file where ano = #{ano}
+	</select>
+	
+
+
+</mapper>
+  

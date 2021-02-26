@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="articleMapper">
+
+	<insert id="register" parameterType="avo">
+		insert into
+		tbl_article(nickname,content)
+		values (#{nickname},#{content})
+	</insert>
+	
+	<select id="curr" resultType="java.lang.Integer">
+	SELECT LAST_INSERT_ID();
+	
+	</select>
+	<select id="profile" parameterType="java.lang.String" resultType="avo">
+	select * from tbl_article where nickname = #{nickname}
+	
+	
+	
+	</select>
+
+
+
+</mapper>

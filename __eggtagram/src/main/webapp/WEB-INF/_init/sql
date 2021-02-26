@@ -1,0 +1,37 @@
+create table tbl_user(
+email varchar(1000) not null,
+nickname varchar(100) not null primary key,
+pwd varchar(1000) not null,
+usercomment varchar(1000) default "Hello!",
+ismen tinyint(1) default 1
+);
+
+create table tbl_article(
+ano int(255) auto_increment primary key,
+nickname varchar(100) not null,
+content varchar(1000),
+regdate timestamp default now()
+);
+
+create table tbl_follw(
+fno int(255) auto_increment primary key,
+follower varchar(100),
+target varchar(100)
+);
+
+create table tbl_like(
+ano int(255),
+cno int(255),
+nickname varchar(100)
+);
+
+create table tbl_file(
+uuid varchar(100) not null primary key,
+nickname varchar(100),
+ano int(255),
+fname varchar(500),
+ftype tinyint(1),
+savedir varchar(100)
+);
+
+
