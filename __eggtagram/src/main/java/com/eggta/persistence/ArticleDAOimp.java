@@ -32,7 +32,9 @@ public class ArticleDAOimp implements ArticleDAO{
 	@Override
 	public ArticleVO selectOne(Integer ano) {
 		// TODO Auto-generated method stub
-		return null;
+		return sql.selectOne(NAME_SPACE + "detail",ano);	
+		
+	
 	}
 
 	@Override

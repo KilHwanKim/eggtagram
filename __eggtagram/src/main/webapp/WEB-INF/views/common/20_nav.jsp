@@ -22,10 +22,10 @@
 .dropdown:hover .dropdown-content {
 	display: block;
 }
-.list-group-item:hover {
-background: #eeeeee;
-}
 
+.list-group-item:hover {
+	background: #eeeeee;
+}
 </style>
 
 <body>
@@ -61,9 +61,13 @@ background: #eeeeee;
 						<div class="dropdown-content">
 							<div class="list-group">
 
-								<a   class="list-group-item" href="/user/profile/${login.nickname }" style="text-decoration: none;color: black;" >프로필 </a>
-								<a   class="list-group-item" href="/" style="text-decoration: none;color: black;" >수정 </a>
-								<a   class="list-group-item" href="/user/logout" style="text-decoration: none;color: black;" >로그아웃 </a>
+								<a class="list-group-item"
+									href="/user/profile/${login.nickname }"
+									style="text-decoration: none; color: black;">프로필 </a> <a
+									class="list-group-item" href="/"
+									style="text-decoration: none; color: black;">수정 </a> <a
+									class="list-group-item" href="/user/logout"
+									style="text-decoration: none; color: black;">로그아웃 </a>
 							</div>
 
 

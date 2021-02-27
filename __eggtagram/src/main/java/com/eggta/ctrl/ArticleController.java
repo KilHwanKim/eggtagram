@@ -76,11 +76,11 @@ public class ArticleController {
 	}
 	
 	@GetMapping("/detail/{ano}")
-	public ModelAndView detail(Model model,@PathVariable Integer ano) {
-		ModelAndView Page = new ModelAndView("/");
+	public String detail(Model model,@PathVariable Integer ano) {
+		model.addAttribute("avo",asv.getDetail(ano));
 		
-		logger.info("Page", Page);
-		return Page;
+		
+		return "article/detail" ;
 	}
 	
 	

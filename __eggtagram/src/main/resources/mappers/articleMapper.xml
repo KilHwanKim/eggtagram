@@ -12,12 +12,14 @@
 	
 	<select id="curr" resultType="java.lang.Integer">
 	SELECT LAST_INSERT_ID();
-	
 	</select>
+	
 	<select id="profile" parameterType="java.lang.String" resultType="avo">
 	select * from tbl_article where nickname = #{nickname}
+	</select>
 	
-	
+	<select id="detail" parameterType="java.lang.Integer" resultType ="avo">
+	select * from tbl_article where ano = #{ano}
 	
 	</select>
 
