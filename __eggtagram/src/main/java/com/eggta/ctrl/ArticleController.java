@@ -26,12 +26,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.eggta.domain.ArticleVO;
+import com.eggta.domain.FileVO;
 import com.eggta.orm.FileProcessor;
 import com.eggta.service.ArticleService;
 import com.eggta.service.FileService;
 import com.eggta.service.UserService;
-
-
 
 /**
  * Handles requests for the application home page.
@@ -40,54 +39,55 @@ import com.eggta.service.UserService;
 @RequestMapping("/article/*")
 
 public class ArticleController {
-   
-   @Inject
-   private BCryptPasswordEncoder bcpEncoder;
-   @Inject
+
+	@Inject
+	private BCryptPasswordEncoder bcpEncoder;
+	@Inject
 	private FileProcessor fp;
-   @Inject
-   private ArticleService asv;
+	@Inject
+	private ArticleService asv;
 	@Inject
 	private UserService usv;
+	
+	@Inject
+	private FileService fsv;
 
-   private static final Logger logger = LoggerFactory.getLogger(ArticleController.class);
-   
-   
-   @GetMapping("/register")
-   public void register() {}
-   
-   
+	
+	
+	private static final Logger logger = LoggerFactory.getLogger(ArticleController.class);
+
+	@GetMapping("/register")
+	public void register() {
+	}
+
 	@PostMapping("/register")
-	public String register(ArticleVO avo,
-			Model model,@RequestParam(name="photo",required = false)MultipartFile[] files ) {
-		
+	public String register(ArticleVO avo, Model model,
+			@RequestParam(name = "photo", required = false) MultipartFile[] files) {
+
 		logger.info("recontent" + avo.getContent());
 		logger.info("renick" + avo.getNickname());
 		int isUp = asv.register(avo);
-		if(isUp > 0 ) {
+		if (isUp > 0) {
 			int ano = asv.getCurrAno();
-			if(files[0].getSize()>0) {
+			if (files[0].getSize() > 0) {
 				fp.uploadFiles(files, ano);
 			}
 		}
-		String msg = isUp >0? "article 등록 완료~": "article 등록 오류!";
-		logger.info("Messge :"+msg);
+		String msg = isUp > 0 ? "article 등록 완료~" : "article 등록 오류!";
+		logger.info("Messge :" + msg);
 		return "redirect:/";
 	}
-	
+
 	@GetMapping("/detail/{ano}")
-	public String detail(Model model,@PathVariable Integer ano) {
-		model.addAttribute("avo",asv.getDetail(ano));
+	public String detail(Model model, @PathVariable Integer ano) {
+		model.addAttribute("avo", asv.getDetail(ano));
+		List<FileVO> filelist = fsv.getFile(ano);
+		logger.info("길이 : "+filelist.size());
+		model.addAttribute("f_list",filelist);
+		model.addAttribute("f_size",filelist.size()-1);
 		
-		
-		return "article/detail" ;
+
+		return "article/detail";
 	}
-	
-	
-	
-   
-   
-   
-   
-   
+
 }

@@ -7,16 +7,6 @@
 
 <link rel="stylesheet"
 	href="/resources/f-instagram-master/css/detail-page.css">
-
-
-
-
-
-
-
-
-
-
 <jsp:include page="../common/20_nav.jsp"></jsp:include>
 <div id="main_container">
 
@@ -25,81 +15,18 @@
 		<div class="contents_box">
 
 			<article class="contents cont01">
-				<!-- 슬라이드 -->
+
 				<div class="img_section">
-
-
-
-
-					<div id="demo" class="carousel slide" data-ride="carousel">
-
-						<!-- Indicators -->
-						<ul class="carousel-indicators">
-							
-							
-							 <c:forEach begin="0" end="${f_size }" varStatus="status" >
-							 
-							 <c:if test="${status.first }">
-							 <li data-target="#demo" data-slide-to="${status.current}" class="active"></li>
-							 </c:if>
-							 <c:if test="${!status.first }">
-							 <li data-target="#demo" data-slide-to="${status.current}"></li>
-							 
-							 </c:if>
-							 
-							 
-							 </c:forEach>
-						</ul>
-
-						<!-- The slideshow -->
-						<div class="carousel-inner">
-							
-							
-							
-							
-							<c:forEach items="${f_list }" var="fvo" varStatus="status" >
-							
-							<c:if test="${status.first }">
-							<div class="carousel-item active">
-								<img
-									src="/uploads/${fvo.savedir }/${fvo.uuid }_${fvo.fname }"									alt=""
-									
-									style="height: 380px">
-							</div>
-							</c:if>
-							<c:if test="${!status.first }">
-							<div class="carousel-item">
-								<img
-									src="/uploads/${fvo.savedir }/${fvo.uuid }_${fvo.fname }"									alt=""
-									
-									style="height: 380px;">
-							</div>
-							</c:if>
-							
-							</c:forEach>
+					<div class="trans_inner">
+						<div>
+							<img
+								src="/resources/f-instagram-master/imgs/img_section/img03.jpg"
+								alt="">
 						</div>
-
-
-
-						<!-- Left and right controls -->
-						<a class="carousel-control-prev" href="#demo" data-slide="prev">
-							<span class="carousel-control-prev-icon"></span>
-						</a> <a class="carousel-control-next" href="#demo" data-slide="next">
-							<span class="carousel-control-next-icon"></span>
-						</a>
 					</div>
-
-
-
-
-
-
-
-
-
 					<div class="container pt-3">
 						<h1>${avo.content }</h1>
-
+						
 					</div>
 
 				</div>
