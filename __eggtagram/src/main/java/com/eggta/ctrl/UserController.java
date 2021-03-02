@@ -19,11 +19,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.eggta.domain.ArticleVO;
 import com.eggta.domain.FileVO;
 import com.eggta.domain.UserVO;
+import com.eggta.orm.FileProcessor;
 import com.eggta.service.ArticleService;
 import com.eggta.service.FileService;
 import com.eggta.service.UserService;
@@ -42,9 +44,11 @@ public class UserController {
 	
 	@Inject 
 	private ArticleService asv;
-	
+
 	@Inject 
 	private FileService fsv;
+	@Inject
+	private FileProcessor fp;
 	
 	
 	@GetMapping("/signup")
@@ -91,7 +95,7 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping("/profile/{nickname}")
+	@GetMapping("/profile/{nickname}")
 	public String profile(Model model,@PathVariable String nickname) {
 		logger.info(">>> test nickname = " +nickname);
 		model.addAttribute("uvo",usv.getMember(nickname));
@@ -106,6 +110,11 @@ public class UserController {
 			
 			
 		}
+		
+		FileVO fvo=fsv.getFile(nickname);
+		String profile = fvo.getSavedir()+"\\"+fvo.getUuid()+"_th_"+fvo.getFname();
+		logger.info("profile은 어떻게 되냐면"+profile);
+		model.addAttribute("profile",profile);
 		model.addAttribute("a_list", list);
 		model.addAttribute("article_count",list.size());
 		model.addAttribute("belong_count",0);//팔로워
@@ -113,6 +122,23 @@ public class UserController {
 
 		return "user/profile";
 	}
+	@PostMapping("/profile/{nickname}")
+	public String proflie(@PathVariable String nickname ,@RequestParam(name="photo") MultipartFile[]files) {
+		logger.info(">>> test post");
+		
+		if(files[0].getSize() > 0) {
+			fp.uploadFiles(files, nickname);
+		}
+		
+		
+		return "redirect:./"+nickname;
+	}
+	
+	
+	
+	
+		
+	
 	
 	@GetMapping("/logout")
 	public String logout(HttpSession ses) {

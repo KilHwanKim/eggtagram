@@ -31,7 +31,7 @@ public class FileDAOimp implements FileDAO{
 	@Override
 	public FileVO selectOne(String nickname) {
 		// TODO Auto-generated method stub
-		return null;
+		return sql.selectOne(NAME_SPACE + "profile",nickname);
 	}
 
 	@Override
