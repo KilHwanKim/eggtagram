@@ -4,7 +4,7 @@
 
 <jsp:include page="../common/10_header.jsp"></jsp:include>
 <link rel="stylesheet" href="/resources/f-instagram-master/css/login.css">
-<jsp:include page="../common/20_nav.jsp"></jsp:include>
+
 
 <div id="main_container">
 
@@ -28,7 +28,7 @@
 
                     <p class="login_user_password">
                      
-                        <input type="text" name="pwd" placeholder="pwd"required="required">
+                        <input type="password" name="pwd" placeholder="pwd"required="required">
                     </p>
 
                     <input type="submit" id="submit_btn" value="회원가입" class="submit_btn">
@@ -37,7 +37,11 @@
 
 
             </div>
-
+		<div class="bottom_box">
+                <div>
+                    <span>아이디가 있으신가요?</span><a href="/">로그인</a>
+                </div>
+            </div>
             
 
 
