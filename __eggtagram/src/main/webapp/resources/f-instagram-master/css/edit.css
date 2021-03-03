@@ -1,0 +1,23 @@
+.post_form_container{
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    width: 60%;
+   	max-height: 600px;
+}
+
+
+.post_form{
+    padding: 40px;
+    
+    margin: 0 0 10px;
+    
+}
+
+.blank {
+	border: 1px solid rgba(0,0,0,.125);
+	height: 400px;
+	display: inline-flex;
+	
+}

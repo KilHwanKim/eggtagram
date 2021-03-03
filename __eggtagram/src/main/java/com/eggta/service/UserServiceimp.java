@@ -39,7 +39,7 @@ public class UserServiceimp implements UserService{
 	@Override
 	public int resign(String nickname) {
 		// TODO Auto-generated method stub
-		return 0;
+		return udao.delete(nickname);
 	}
 
 	@Override

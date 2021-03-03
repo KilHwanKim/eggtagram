@@ -9,7 +9,7 @@ public interface UserDAO {
 	public int SelectEmail(String email);
 	public int insert(UserVO uvo);
 	public int update(UserVO uvo);
-	public int delete(UserVO uvo);
+	public int delete(String nickname);
 	public UserVO selectlogin(String email);
 	
 	

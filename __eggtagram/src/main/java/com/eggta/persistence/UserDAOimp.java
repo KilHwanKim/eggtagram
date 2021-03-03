@@ -46,9 +46,9 @@ public class UserDAOimp implements UserDAO{
 	}
 
 	@Override
-	public int delete(UserVO uvo) {
+	public int delete(String nickname) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sql.delete(NAME_SPACE + "resign",nickname);
 	}
 
 	

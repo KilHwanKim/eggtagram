@@ -2,10 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<h6 class="text-center mt-5 footer">
-	Copyright 2021 by Refsnes Data. All Rights Reserved. <br>Kingstagram
-	is Powered by "Team-Kingstagram".
-</h6>
-</section>
+
+<script>
+	let result = '<c:out value="${result}"/>';
+	console.log("result:"+result);
+	if (result != '')
+		alert(result);
+</script>
+
 </body>
 </html>

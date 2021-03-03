@@ -104,9 +104,7 @@
 						});
 	});
 </script>
-</body>
-
-</html>
+<jsp:include page="../common/90_footer.jsp"></jsp:include>
 
 
 

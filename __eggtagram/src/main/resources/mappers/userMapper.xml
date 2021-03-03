@@ -19,6 +19,11 @@
 	select * from tbl_user where email=#{email}	
 	
 	</select>
+	
+	<delete id="resign" parameterType="java.lang.String">
+	delete from tbl_user where nickname = #{nickname}
+	
+	</delete>
 
 
 

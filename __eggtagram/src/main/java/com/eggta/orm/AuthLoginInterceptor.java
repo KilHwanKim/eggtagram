@@ -30,6 +30,7 @@ public class AuthLoginInterceptor extends HandlerInterceptorAdapter{
 		return true;}
 	}
 
+
 	
 
 }

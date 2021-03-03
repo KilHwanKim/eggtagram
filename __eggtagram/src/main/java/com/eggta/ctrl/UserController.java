@@ -1,12 +1,11 @@
 package com.eggta.ctrl;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
+
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -63,7 +62,7 @@ public class UserController {
 		uvo.setPwd(encPwd);
 		int isUP = usv.join(uvo);
 		String msg = isUP > 0 ? uvo.getEmail() +"님 가입 완료입니다.": "가입 오류!";
-		logger.info("result",msg);
+		reAttr.addFlashAttribute("result", msg);
 		return "redirect:/";
 	}
 	@GetMapping("/login")
@@ -85,10 +84,11 @@ public class UserController {
 		logger.info("isEqual"+isEqual);
 		if(isEqual) {
 			ses.setAttribute("login", dbinfo);
-			
 			ses.setMaxInactiveInterval(60 * 30);
 			return "redirect:/";}
 		else {
+			String msg =  "로그인실패" ;
+			reAttr.addFlashAttribute("result", msg);
 			return "redirect:/user/login";
 		}
 		
@@ -155,8 +155,33 @@ public class UserController {
 	
 	
 	@GetMapping("/logout")
-	public String logout(HttpSession ses) {
+	public String logout(HttpSession ses,RedirectAttributes reAttr) {
 		logger.info(">>>> /user/logout - GET");
+		
+		logger.info("result>>>>"+reAttr.toString());
+		ses.invalidate();
+		logger.info(reAttr.toString());
+		logger.info("result>>>>"+reAttr.toString());
+		reAttr.addAttribute("result", "로그아웃 완료~");
+		return "redirect:/";
+	}
+	@GetMapping("/edit")
+	public void edit() {
+		
+	}
+	@GetMapping("/resign")
+	public void resign() {
+		
+	}
+	@PostMapping("/resign")
+	public String resign(@RequestParam("nickname") String nickname,HttpSession ses,RedirectAttributes reAttr) {
+		
+		
+		logger.info("resgin-post :nickname:>>>"+nickname);
+		int isRm = usv.resign(nickname);
+		logger.info("resign isRm: "+isRm);
+		String msg = isRm > 0 ? nickname + "님 탈퇴완료~" : "탈퇴 오류!";
+		reAttr.addFlashAttribute("result", msg);
 		ses.invalidate();
 		return "redirect:/";
 	}

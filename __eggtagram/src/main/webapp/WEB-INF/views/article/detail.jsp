@@ -35,47 +35,44 @@
 
 						<!-- Indicators -->
 						<ul class="carousel-indicators">
-							
-							
-							 <c:forEach begin="0" end="${f_size }" varStatus="status" >
-							 
-							 <c:if test="${status.first }">
-							 <li data-target="#demo" data-slide-to="${status.current}" class="active"></li>
-							 </c:if>
-							 <c:if test="${!status.first }">
-							 <li data-target="#demo" data-slide-to="${status.current}"></li>
-							 
-							 </c:if>
-							 
-							 
-							 </c:forEach>
+
+
+							<c:forEach begin="0" end="${f_size }" varStatus="status">
+
+								<c:if test="${status.first }">
+									<li data-target="#demo" data-slide-to="${status.current}"
+										class="active"></li>
+								</c:if>
+								<c:if test="${!status.first }">
+									<li data-target="#demo" data-slide-to="${status.current}"></li>
+
+								</c:if>
+
+
+							</c:forEach>
 						</ul>
 
 						<!-- The slideshow -->
 						<div class="carousel-inner">
-							
-							
-							
-							
-							<c:forEach items="${f_list }" var="fvo" varStatus="status" >
-							
-							<c:if test="${status.first }">
-							<div class="carousel-item active">
-								<img
-									src="/uploads/${fvo.savedir }/${fvo.uuid }_${fvo.fname }"									alt=""
-									
-									style="height: 380px">
-							</div>
-							</c:if>
-							<c:if test="${!status.first }">
-							<div class="carousel-item">
-								<img
-									src="/uploads/${fvo.savedir }/${fvo.uuid }_${fvo.fname }"									alt=""
-									
-									style="height: 380px;">
-							</div>
-							</c:if>
-							
+
+
+
+
+							<c:forEach items="${f_list }" var="fvo" varStatus="status">
+
+								<c:if test="${status.first }">
+									<div class="carousel-item active">
+										<img src="/uploads/${fvo.savedir }/${fvo.uuid }_${fvo.fname }"
+											alt="" style="height: 380px">
+									</div>
+								</c:if>
+								<c:if test="${!status.first }">
+									<div class="carousel-item">
+										<img src="/uploads/${fvo.savedir }/${fvo.uuid }_${fvo.fname }"
+											alt="" style="height: 380px;">
+									</div>
+								</c:if>
+
 							</c:forEach>
 						</div>
 
@@ -298,4 +295,5 @@
 		<div class="cancel">취소</div>
 	</div>
 </div>
+<jsp:include page="../common/90_footer.jsp"></jsp:include>
 

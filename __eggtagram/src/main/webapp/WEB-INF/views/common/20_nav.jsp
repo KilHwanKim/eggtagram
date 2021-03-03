@@ -64,7 +64,7 @@
 								<a class="list-group-item"
 									href="/user/profile/${login.nickname }"
 									style="text-decoration: none; color: black;">프로필 </a> <a
-									class="list-group-item" href="/"
+									class="list-group-item" href="/user/edit"
 									style="text-decoration: none; color: black;">수정 </a> <a
 									class="list-group-item" href="/user/logout"
 									style="text-decoration: none; color: black;">로그아웃 </a>
