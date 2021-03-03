@@ -4,7 +4,7 @@ package com.eggta.domain;
 public class FileVO {
 	String uuid;
 	String nickname;
-	int ano;
+	Integer ano;
 	String fname;
 	int ftype;
 	String savedir;
@@ -20,10 +20,11 @@ public class FileVO {
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-	public int getAno() {
+	
+	public Integer getAno() {
 		return ano;
 	}
-	public void setAno(int ano) {
+	public void setAno(Integer ano) {
 		this.ano = ano;
 	}
 	public String getFname() {

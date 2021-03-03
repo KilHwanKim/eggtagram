@@ -110,9 +110,13 @@ public class UserController {
 			
 			
 		}
-		
+		String profile = "";
 		FileVO fvo=fsv.getFile(nickname);
-		String profile = fvo.getSavedir()+"\\"+fvo.getUuid()+"_th_"+fvo.getFname();
+		if (fvo != null) {
+		profile = fvo.getSavedir()+"\\"+fvo.getUuid()+"_th_"+fvo.getFname();}
+		else {
+		profile = "";
+		}
 		logger.info("profile은 어떻게 되냐면"+profile);
 		model.addAttribute("profile",profile);
 		model.addAttribute("a_list", list);
@@ -126,7 +130,17 @@ public class UserController {
 	public String proflie(@PathVariable String nickname ,@RequestParam(name="photo") MultipartFile[]files) {
 		logger.info(">>> test post");
 		
+		
+		
+		
 		if(files[0].getSize() > 0) {
+			/* 이미 있는 파일 제거 */
+			int isUP = fp.deleteOldFiles(nickname);
+			if (isUP > 0) {
+				logger.info("oldfile 삭제 완료");
+				
+			}
+			
 			fp.uploadFiles(files, nickname);
 		}
 		

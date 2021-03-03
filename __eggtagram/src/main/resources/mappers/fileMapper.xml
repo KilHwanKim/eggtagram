@@ -7,16 +7,22 @@
 	<insert id="register" parameterType="fvo">
 		insert into tbl_file(ano ,uuid,savedir,fname,ftype,nickname)values(#{ano}, #{uuid}, #{savedir}, #{fname}, #{ftype} ,#{nickname})
 	</insert>
+	
 	<select id="filelist" parameterType="java.lang.Integer" resultType="fvo">
 	
 	select uuid, ano,fname,ftype,savedir from tbl_file where ano = #{ano}
 	</select>
 	
 	<select id="profile" parameterType="java.lang.String" resultType="fvo">
-	
 	select uuid, nickname,fname,ftype,savedir from tbl_file where nickname = #{nickname} limit 1
-	
 	</select>
+	<select id="all" resultType="fvo">
+	select * from tbl_file
+	</select>
+	<delete id="oldfile" parameterType="java.lang.String">
+	delete from tbl_file where nickname = #{nickname}
+	
+	</delete>
 	
 
 

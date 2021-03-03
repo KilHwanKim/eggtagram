@@ -114,14 +114,15 @@ public class FileProcessor {
 				e.printStackTrace();
 			}
 			f_vo.setNickname(nickname);
+			logger.info("fileNick >>>>> "+nickname);
 			fsv.resister(f_vo);			
 		} //for end
 		
 		
 		
 	}
-	public void deleteOldFiles(String belong_u) {
-		fsv.remove(belong_u);
+	public int deleteOldFiles(String nickname) {
+		return fsv.remove(nickname);
 	}
 
 	private boolean isImageType(File storeFile) {

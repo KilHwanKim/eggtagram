@@ -8,6 +8,7 @@ public interface FileDAO {
 	public int insert (FileVO fvo);
 	public List<FileVO> selectList(Integer ano);
 	public FileVO selectOne(String nickname);
+	public List<FileVO> selectAllList();
 	public int delete(String nickname);
 	public int delete(Integer ano);
 }

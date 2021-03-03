@@ -37,13 +37,19 @@ public class FileDAOimp implements FileDAO{
 	@Override
 	public int delete(String nickname) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sql.delete(NAME_SPACE +"oldfile",nickname);
 	}
 
 	@Override
 	public int delete(Integer ano) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public List<FileVO> selectAllList() {
+		// TODO Auto-generated method stub
+		return sql.selectList(NAME_SPACE +"all");
 	}
 
 	
