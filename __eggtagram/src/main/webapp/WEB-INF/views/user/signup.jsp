@@ -30,8 +30,21 @@
                      
                         <input type="password" name="pwd" placeholder="pwd"required="required">
                     </p>
+                    <br>
+                    <p class="login_user_gender">
+                     	
+              
+                        <input type="radio" name="ismen" required="required" value="1" style="width: auto;">
+                        <label for="mamale">male</label>
+                        
+                        <input type="radio" name="ismen" required="required" value="0" style="width: auto;">
+                        <label for="female">female</label>
+                    </p>
+                    
 
                     <input type="submit" id="submit_btn" value="회원가입" class="submit_btn">
+                    
+                    
                 </form>
 
 

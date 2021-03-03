@@ -12,8 +12,8 @@
 	
 	<insert id="join" parameterType="uvo">
 		insert into
-		tbl_user(email,pwd,nickname)
-		values (#{email}, #{pwd}, #{nickname})
+		tbl_user(email,pwd,nickname,ismen)
+		values (#{email}, #{pwd}, #{nickname}, #{ismen})
 	</insert>
 	<select id="nick" parameterType="java.lang.String" resultType="uvo">
 	select * from tbl_user where email=#{email}	
