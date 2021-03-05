@@ -124,27 +124,23 @@
 
 					</header>
 
-					<section class="scroll_section">
-						<div class="admin_container">
-							<div class="admin">
-								<img src="/resources/f-instagram-master/imgs/thumb.jpeg"
-									alt="user">
-							</div>
-							<div class="comment">
-								<span class="user_id">Kindtiger</span>강아지가 많이 힘든가보다ㅜㅜㅜㅜㅜ조금만힘내
-								<div class="time">2시간</div>
-							</div>
-						</div>
-
-						<div class="user_container-detail">
+					<section class="scroll_section" style="height: 315px;">
+						<c:forEach items="${c_list }" var="cvo">
+								<div class="user_container-detail">
 							<div class="user">
-								<img src="/resources/f-instagram-master/imgs/thumb02.jpg"
+								<c:if test="${cvo.thumb != null }">
+								<img src="/uploads/${cvo.thumb }"
 									alt="user">
+								</c:if>
+								<c:if test="${cvo.thumb == null }">
+								<img src="/resources/f-instagram-master/imgs/default.jpg"
+									alt="user">
+								</c:if>
 							</div>
 							<div class="comment">
-								<span class="user_id">in0.lee</span>너무귀엽네요 ㅎㅎㅎ맞팔해요~!
+								<a href="/user/profile/${cvo.nickname }"><span class="user_id">${cvo.nickname }</span></a> ${cvo.content }
 								<div class="time">
-									2시간 <span class="try_comment">답글 달기</span>
+									${cvo.regdate }
 								</div>
 								<div class="icon_wrap">
 									<div class="more_trigger">
@@ -157,89 +153,10 @@
 							</div>
 						</div>
 
-						<div class="user_container-detail">
-							<div class="user">
-								<img src="/resources/f-instagram-master/imgs/thumb03.jpg"
-									alt="user">
-							</div>
-							<div class="comment">
-								<span class="user_id">ye_solkim</span>강아지 이름이 뭐에요???
-								<div class="time">
-									2시간 <span class="try_comment">답글 달기</span>
-								</div>
-								<div class="icon_wrap">
-									<div class="more_trigger">
-										<div class="sprite_more_icon"></div>
-									</div>
-									<div>
-										<div class="sprite_small_heart_icon_outline"></div>
-									</div>
-								</div>
-							</div>
-						</div>
 
-						<div class="user_container-detail">
-							<div class="user">
-								<img src="/resources/f-instagram-master/imgs/thumb02.jpg"
-									alt="user">
-							</div>
-							<div class="comment">
-								<span class="user_id">in0.lee</span>너무귀엽네요 ㅎㅎㅎ맞팔해요~!
-								<div class="time">
-									2시간 <span class="try_comment">답글 달기</span>
-								</div>
-								<div class="icon_wrap">
-									<div class="more_trigger">
-										<div class="sprite_more_icon"></div>
-									</div>
-									<div>
-										<div class="sprite_small_heart_icon_outline"></div>
-									</div>
-								</div>
-							</div>
-						</div>
+						</c:forEach>
 
-						<div class="user_container-detail">
-							<div class="user">
-								<img src="/resources/f-instagram-master/imgs/thumb03.jpg"
-									alt="user">
-							</div>
-							<div class="comment">
-								<span class="user_id">in0.lee</span>너무귀엽네요
-								<div class="time">
-									2시간 <span class="try_comment">답글 달기</span>
-								</div>
-								<div class="icon_wrap">
-									<div class="more_trigger">
-										<div class="sprite_more_icon"></div>
-									</div>
-									<div>
-										<div class="sprite_small_heart_icon_outline"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="user_container-detail">
-							<div class="user">
-								<img src="/resources/f-instagram-master/imgs/thumb02.jpg"
-									alt="user">
-							</div>
-							<div class="comment">
-								<span class="user_id">in0.lee</span>너무귀엽네요 ㅎㅎㅎ맞팔해요~!
-								<div class="time">
-									2시간 <span class="try_comment">답글 달기</span>
-								</div>
-								<div class="icon_wrap">
-									<div class="more_trigger">
-										<div class="sprite_more_icon"></div>
-									</div>
-									<div>
-										<div class="sprite_small_heart_icon_outline"></div>
-									</div>
-								</div>
-							</div>
-						</div>
+						
 
 					</section>
 
@@ -268,9 +185,13 @@
 					<div class="timer">${avo.regdate }</div>
 
 					<div class="commit_field">
-						<input type="text" placeholder="댓글달기..">
-
-						<div class="upload_btn">게시</div>
+						<form action="/comment/write" method="post">
+							<input type="text" placeholder="댓글달기.." name="content"> <input
+								type="text" hidden="" name="ano" value="${avo.ano }"> <input
+								type="text" hidden="" name="nickname" value="${login.nickname }">
+							<input type="submit">
+							<div class="upload_btn">게시</div>
+						</form>
 					</div>
 
 

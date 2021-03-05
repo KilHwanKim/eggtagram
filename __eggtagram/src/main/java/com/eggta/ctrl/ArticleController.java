@@ -26,9 +26,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.eggta.domain.ArticleVO;
+import com.eggta.domain.CommentVO;
 import com.eggta.domain.FileVO;
 import com.eggta.orm.FileProcessor;
 import com.eggta.service.ArticleService;
+import com.eggta.service.CommentService;
 import com.eggta.service.FileService;
 import com.eggta.service.UserService;
 
@@ -51,6 +53,9 @@ public class ArticleController {
 	
 	@Inject
 	private FileService fsv;
+	
+	@Inject
+	private CommentService csv;
 
 	
 	
@@ -85,6 +90,18 @@ public class ArticleController {
 		logger.info("길이 : "+filelist.size());
 		model.addAttribute("f_list",filelist);
 		model.addAttribute("f_size",filelist.size()-1);
+		List <CommentVO> c_list = csv.getList(ano);
+		for (CommentVO cvo : c_list) {
+			if ( fsv.getFile(cvo.getNickname()) !=null){
+				FileVO thumb = fsv.getFile(cvo.getNickname());
+				cvo.setThumb(thumb.getSavedir()+"\\"+thumb.getUuid()+"_th_"+thumb.getFname());
+				
+			}
+			
+		}
+		
+		model.addAttribute("c_list",c_list);
+		
 		
 
 		return "article/detail";

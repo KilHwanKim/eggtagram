@@ -105,7 +105,7 @@
     font-size: 0;
 }
 
-.contents .img_section .trans_inner > div{
+.contents .img_ .trans_inner > div{
     width: 100%;
     display: inline-block;
 }
@@ -137,7 +137,7 @@
 
 .scroll_section{
     padding:12px 16px;
-    /*height: 240px;*/
+    height: 315px;
     overflow-x: hidden;
     overflow-y: scroll;
 }

@@ -56,7 +56,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/signup")
-	public String join(UserVO uvo, RedirectAttributes reAttr) {
+	public String signup(UserVO uvo, RedirectAttributes reAttr) {
 		logger.info(">>> /user/signup - POST");
 		String encPwd = bcpEncoder.encode(uvo.getPwd());
 		uvo.setPwd(encPwd);
@@ -162,7 +162,8 @@ public class UserController {
 		ses.invalidate();
 		logger.info(reAttr.toString());
 		logger.info("result>>>>"+reAttr.toString());
-		reAttr.addAttribute("result", "로그아웃 완료~");
+		reAttr.addFlashAttribute("result", "로그아웃 완료~");
+		
 		return "redirect:/";
 	}
 	@GetMapping("/edit")

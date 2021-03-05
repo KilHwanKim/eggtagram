@@ -21,12 +21,13 @@ public class AuthLoginInterceptor extends HandlerInterceptorAdapter{
 		Object obj = session.getAttribute("login");
 		logger.info("obj 됩니까?");
 		
+		
 		if (obj == null) {
 			response.sendRedirect("/user/login");
 			return false;
 		}
 		else {
-			logger.info("과연"+ obj.toString());
+			
 		return true;}
 	}
 

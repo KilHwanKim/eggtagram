@@ -5,9 +5,8 @@
 
 <script>
 	let result = '<c:out value="${result}"/>';
-	console.log("result:"+result);
-	if (result != '')
-		alert(result);
+	console.log("result"+result);
+	if (result != '') alert(result);
 </script>
 
 </body>
