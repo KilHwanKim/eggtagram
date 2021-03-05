@@ -28,7 +28,7 @@
 				<div class="profile_wrap">
 					<div class="profile_img" id="trigger2">
 						<c:if test="${profile == '' }">
-						<img src="/resources/f-instagram-master/imgs/thumb.jpeg"
+						<img src="/resources/f-instagram-master/imgs/default.jpg"
 							alt="착한호랑이">
 						
 						</c:if>
