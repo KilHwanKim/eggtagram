@@ -1,5 +1,7 @@
 package com.eggta.ctrl;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 
@@ -95,7 +97,7 @@ public class UserController {
 	}
 	
 	
-	@GetMapping("/profile/{nickname}")
+	@GetMapping(value ="/profile/{nickname}" ,produces = "application/text; charset=UTF-8")
 	public String profile(Model model,@PathVariable String nickname) {
 		logger.info(">>> test nickname = " +nickname);
 		model.addAttribute("uvo",usv.getMember(nickname));
@@ -126,9 +128,9 @@ public class UserController {
 
 		return "user/profile";
 	}
-	@PostMapping("/profile/{nickname}")
-	public String proflie(@PathVariable String nickname ,@RequestParam(name="photo") MultipartFile[]files) {
-		logger.info(">>> test post");
+	@PostMapping(value ="/profile/{nickname}")
+	public String proflie(@PathVariable String nickname ,@RequestParam(name="photo") MultipartFile[]files) throws UnsupportedEncodingException {
+		logger.info(">>> test post"+nickname);
 		
 		
 		
@@ -143,9 +145,9 @@ public class UserController {
 			
 			fp.uploadFiles(files, nickname);
 		}
+		String ennick = URLEncoder.encode(nickname, "UTF-8");
 		
-		
-		return "redirect:./"+nickname;
+		return "redirect:./"+ennick;
 	}
 	
 	

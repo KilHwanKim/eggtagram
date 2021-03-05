@@ -26,29 +26,30 @@
 
 			<div class="hori_cont">
 				<div class="profile_wrap">
-					<div class="profile_img" id="trigger2">
+
+					<div class="profile_img"
+						<c:if test="${uvo.nickname eq login.nickname }">id="trigger2"</c:if>>
 						<c:if test="${profile == '' }">
-						<img src="/resources/f-instagram-master/imgs/default.jpg"
-							alt="착한호랑이">
-						
+							<img src="/resources/f-instagram-master/imgs/default.jpg"
+								alt="착한호랑이">
+
 						</c:if>
 						<c:if test="${profile !='' }">
-						<img src="/uploads/${profile }"
-							alt="착한호랑이">
-						
+							<img src="/uploads/${profile }" alt="착한호랑이">
+
 						</c:if>
-						
-						
+
+
 
 
 					</div>
-					<form method="post" enctype="multipart/form-data">
+					<form method="post" enctype="multipart/form-data" id="profile_form">
 						<input type="file" hidden="" id="id_profile" name="photo">
+
 						
-						<input type="submit">
 					</form>
 				</div>
-				
+
 
 				<div class="detail">
 					<div class="top">
@@ -101,8 +102,14 @@
 			$("#id_profile").click();
 
 		});
+		$(document).on("change", "#profile_form", function() {
+			console.log("바귐");
+			$("#profile_form").submit();
+		});
 
 	});
+
+	
 </script>
 
 
