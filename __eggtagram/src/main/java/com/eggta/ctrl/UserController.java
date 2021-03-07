@@ -119,7 +119,6 @@ public class UserController {
 		else {
 		profile = "";
 		}
-		logger.info("profile은 어떻게 되냐면"+profile);
 		model.addAttribute("profile",profile);
 		model.addAttribute("a_list", list);
 		model.addAttribute("article_count",list.size());
@@ -131,26 +130,18 @@ public class UserController {
 	@PostMapping(value ="/profile/{nickname}")
 	public String proflie(@PathVariable String nickname ,@RequestParam(name="photo") MultipartFile[]files) throws UnsupportedEncodingException {
 		logger.info(">>> test post"+nickname);
-		
-		
-		
-		
 		if(files[0].getSize() > 0) {
 			/* 이미 있는 파일 제거 */
 			int isUP = fp.deleteOldFiles(nickname);
 			if (isUP > 0) {
 				logger.info("oldfile 삭제 완료");
-				
 			}
-			
 			fp.uploadFiles(files, nickname);
 		}
 		String ennick = URLEncoder.encode(nickname, "UTF-8");
 		
 		return "redirect:./"+ennick;
 	}
-	
-	
 	
 	
 		

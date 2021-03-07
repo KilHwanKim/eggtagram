@@ -107,7 +107,7 @@
 					<header class="top">
 						<div class="user_container">
 							<div class="profile_img">
-								<img src="/resources/f-instagram-master/imgs/thumb.jpeg" alt="">
+								<img src="/uploads/${thumb }" alt="">
 							</div>
 							<div class="user_name">
 								<div class="nick_name">${avo.nickname }</div>

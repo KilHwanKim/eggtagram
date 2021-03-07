@@ -99,7 +99,11 @@ public class ArticleController {
 			}
 			
 		}
-		
+		FileVO myfvo = fsv.getFile(asv.getDetail(ano).getNickname());
+		logger.info("mynickname"+asv.getDetail(ano).getNickname());
+		String my_thumb = myfvo.getSavedir() +"\\"+myfvo.getUuid()+"_th_"+myfvo.getFname();
+		logger.info("mythumb"+my_thumb);
+		model.addAttribute("thumb",my_thumb);
 		model.addAttribute("c_list",c_list);
 		
 		
