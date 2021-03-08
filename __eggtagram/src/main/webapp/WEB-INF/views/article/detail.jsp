@@ -6,7 +6,7 @@
 <jsp:include page="../common/10_header.jsp"></jsp:include>
 
 <link rel="stylesheet"
-	href="/resources/f-instagram-master/css/detail-page.css">
+	href="/resources/f-instagram-master/css/detail-page.css?ver=1">
 
 
 
@@ -18,6 +18,7 @@
 
 
 <jsp:include page="../common/20_nav.jsp"></jsp:include>
+
 <div id="main_container">
 
 	<section class="b_inner">
@@ -97,6 +98,7 @@
 					<div class="container pt-3">
 						<h1>${avo.content }</h1>
 
+
 					</div>
 
 				</div>
@@ -126,37 +128,36 @@
 
 					<section class="scroll_section" style="height: 315px;">
 						<c:forEach items="${c_list }" var="cvo">
-								<div class="user_container-detail">
-							<div class="user">
-								<c:if test="${cvo.thumb != null }">
-								<img src="/uploads/${cvo.thumb }"
-									alt="user">
-								</c:if>
-								<c:if test="${cvo.thumb == null }">
-								<img src="/resources/f-instagram-master/imgs/default.jpg"
-									alt="user">
-								</c:if>
-							</div>
-							<div class="comment">
-								<a href="/user/profile/${cvo.nickname }"><span class="user_id">${cvo.nickname }</span></a> ${cvo.content }
-								<div class="time">
-									${cvo.regdate }
+							<div class="user_container-detail">
+								<div class="user">
+									<c:if test="${cvo.thumb != null }">
+										<img src="/uploads/${cvo.thumb }" alt="user">
+									</c:if>
+									<c:if test="${cvo.thumb == null }">
+										<img src="/resources/f-instagram-master/imgs/default.jpg"
+											alt="user">
+									</c:if>
 								</div>
-								<div class="icon_wrap">
-									<div class="more_trigger">
-										<div class="sprite_more_icon"></div>
-									</div>
-									<div>
-										<div class="sprite_small_heart_icon_outline"></div>
+								<div class="comment">
+									<a href="/user/profile/${cvo.nickname }"><span
+										class="user_id">${cvo.nickname }</span></a> ${cvo.content }
+									<div class="time">${cvo.regdate }</div>
+									<div class="icon_wrap">
+										<div class="more_trigger">
+											<div class="sprite_more_icon"></div>
+										</div>
+										<!-- 좋아요 오류 -->
+										<!-- <div class="small_heart_btn">
+											<div class="sprite_small_heart_icon_outline"></div>
+										</div>  -->
 									</div>
 								</div>
 							</div>
-						</div>
 
 
 						</c:forEach>
 
-						
+
 
 					</section>
 
@@ -185,13 +186,16 @@
 					<div class="timer">${avo.regdate }</div>
 
 					<div class="commit_field">
-						<form action="/comment/write" method="post">
-							<input type="text" placeholder="댓글달기.." name="content"> <input
-								type="text" hidden="" name="ano" value="${avo.ano }"> <input
-								type="text" hidden="" name="nickname" value="${login.nickname }">
-							<input type="submit">
-							<div class="upload_btn">게시</div>
+						<form action="/comment/write" method="post" id="comment_form" >
+							<input type="text" placeholder="댓글달기.." name="content"
+								required="required"> <input type="text" hidden=""
+								name="ano" value="${avo.ano }"> <input type="text"
+								hidden="" name="nickname" value="${login.nickname }">
+
+							
+								<input class="submit" type="submit" value="게시" > 
 						</form>
+
 					</div>
 
 
@@ -216,5 +220,32 @@
 		<div class="cancel">취소</div>
 	</div>
 </div>
+
+
+<script type="text/javascript">
+	$(function() {
+		$(document).on("click", ".heart_btn", function() {
+			if ($(this).children('div').hasClass("on") === true) {
+				$(this).children('div').removeClass("on");
+
+			} else {
+				$(this).children('div').addClass("on");
+
+			}
+
+		});
+		$(document).on("click", ".small_heart_btn", function() {
+			if ($(this).children('div').hasClass("on") === true) {
+				$(this).children('div').removeClass("on");
+
+			} else {
+				$(this).children('div').addClass("on");
+
+			}
+
+		});
+
+	});
+</script>
 <jsp:include page="../common/90_footer.jsp"></jsp:include>
 

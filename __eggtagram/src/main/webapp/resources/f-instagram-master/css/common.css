@@ -37,12 +37,14 @@ body {
     height: 22px;
 }
 
+
 .sprite_small_search_icon {
     display: inline-block;
     background: url('../imgs/background01.png') no-repeat -337px -246px;
     width: 10px;
     height: 10px;
 }
+
 
 .sprite_more_icon {
     display: inline-block;
@@ -81,8 +83,20 @@ body {
     display: inline-block;
     background: url('../imgs/background01.png') no-repeat -323px -274px;
     width: 12px;
-    height: 11px;
+    height
+    : 11px;
 }
+
+.sprite_heart_icon_outline.on{
+    background: url('../imgs/background01.png') no-repeat -26px -261px;
+    animation:heart_bounce 1s linear;
+}
+
+.sprite_small_heart_icon_outline.on{
+    background: url('../imgs/background01.png') no-repeat -337px -286px;
+    animation:heart_bounce 1s linear;
+}
+
 
 .sprite_camera_icon {
     display: inline-block;

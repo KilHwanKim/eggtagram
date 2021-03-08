@@ -253,6 +253,10 @@ body{
 .sprite_heart_icon_outline.on {
     background: url('../imgs/background01.png') no-repeat -26px -261px;
 }
+.sprite_small_heart_icon_outline.on{
+    background: url('../imgs/background01.png') no-repeat -337px -286px;
+    animation:heart_bounce 1s linear;
+}
 
 
 .contents .likes{
