@@ -69,13 +69,3 @@ regdate timestamp default now()
 );
 alter table tbl_comment add foreign key (ano) references tbl_article(ano) on delete cascade;
 alter table tbl_comment add foreign key (nickname) references tbl_user(nickname) on delete cascade;
-
-
-
-
-
-
-
-
-
-
