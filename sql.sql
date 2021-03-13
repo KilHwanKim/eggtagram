@@ -29,7 +29,6 @@ regdate timestamp default now()
 alter table tbl_article add foreign key (nickname) references tbl_user(nickname) on delete cascade;
 
 
-
 create table tbl_follow(
 fno int(255) auto_increment primary key,
 follower varchar(100),
