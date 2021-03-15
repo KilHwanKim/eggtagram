@@ -11,8 +11,11 @@
 			style="text-decoration: none; color: black;"> 수정 </a> <a
 			class="list-group-item" href="/user/resign"
 			style="text-decoration: none; color: black;">회원탈퇴 </a> <a
+			class="list-group-item" href="/user/source"
+			style="text-decoration: none; color: black;">소스참고 </a> <a
 			class="list-group-item" href="#"
 			style="text-decoration: none; color: black;">혹시 몰라 </a>
+
 	</div>
 
 	<div class="container-fluid blank"></div>

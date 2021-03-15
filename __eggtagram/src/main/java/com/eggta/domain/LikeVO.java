@@ -3,19 +3,20 @@ package com.eggta.domain;
 
 
 public class LikeVO {
-	int ano;
-	int cno;
+	Integer ano;
+	Integer cno;
 	String nickname;
-	public int getAno() {
+	
+	public Integer getAno() {
 		return ano;
 	}
-	public void setAno(int ano) {
+	public void setAno(Integer ano) {
 		this.ano = ano;
 	}
-	public int getCno() {
+	public Integer getCno() {
 		return cno;
 	}
-	public void setCno(int cno) {
+	public void setCno(Integer cno) {
 		this.cno = cno;
 	}
 	public String getNickname() {

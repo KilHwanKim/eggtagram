@@ -163,6 +163,10 @@ public class UserController {
 	public void edit() {
 		
 	}
+	@GetMapping("/source")
+	public void source() {
+		
+	}
 	@GetMapping("/resign")
 	public void resign() {
 		

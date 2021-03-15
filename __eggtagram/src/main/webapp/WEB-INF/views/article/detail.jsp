@@ -146,10 +146,10 @@
 										<div class="more_trigger">
 											<div class="sprite_more_icon"></div>
 										</div>
-										<!-- 좋아요 오류 -->
-										<!-- <div class="small_heart_btn">
+										
+										<div class="small_heart_btn">
 											<div class="sprite_small_heart_icon_outline"></div>
-										</div>  -->
+										</div>
 									</div>
 								</div>
 							</div>
@@ -189,8 +189,8 @@
 						<form action="/comment/write" method="post" id="comment_form" >
 							<input type="text" placeholder="댓글달기.." name="content"
 								required="required"> <input type="text" hidden=""
-								name="ano" value="${avo.ano }"> <input type="text"
-								hidden="" name="nickname" value="${login.nickname }">
+								name="ano" value="${avo.ano }" id="ano"> <input type="text" 
+								hidden="" name="nickname" value="${login.nickname }" id="nickname">
 
 							
 								<input class="submit" type="submit" value="게시" > 
@@ -222,14 +222,21 @@
 </div>
 
 
+
 <script type="text/javascript">
 	$(function() {
-		$(document).on("click", ".heart_btn", function() {
+		$(document).on("click", ".heart_btn", function(e) {
+			let anoval = $("#ano").val();
+			let nicknameval = $("#nickname").val();
+			
 			if ($(this).children('div').hasClass("on") === true) {
+				
+				
 				$(this).children('div').removeClass("on");
-
 			} else {
 				$(this).children('div').addClass("on");
+				
+				
 
 			}
 

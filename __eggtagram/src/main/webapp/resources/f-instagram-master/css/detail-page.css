@@ -271,8 +271,8 @@
 }
 
 .sprite_small_heart_icon_outline.on{
-    background: url('../imgs/background01.png') no-repeat -337px -286px;
-    animation:heart_bounce 1s linear;
+    background: url('../imgs/background01.png') no-repeat -323px -286px;
+    z-index: 5;
 }
 
 .sprite_heart_icon_outline.on{

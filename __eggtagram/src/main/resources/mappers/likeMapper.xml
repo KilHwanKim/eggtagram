@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="likeMapper">
+
+<insert id="up" parameterType="lvo">
+insert into tbl_like(nickname,ano)values(#{nickname},#{ano}) 
+</insert>
+<delete id="cancle" parameterType="lvo">
+delete from tbl_like where nickname = #{nickname} and ano = #{ano}
+</delete>
+	
+</mapper>
