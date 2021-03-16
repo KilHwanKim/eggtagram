@@ -18,7 +18,7 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text">닉네임</span>
 						</div>
-						<input type="text" class="form-control">
+						<input type="text" class="form-control" value="${login.nickname }" >
 					</div>
 					<div class="input-group mb-5">
 						<div class="input-group-prepend">

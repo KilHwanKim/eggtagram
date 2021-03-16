@@ -6,6 +6,7 @@
 
 }
 
+
 .form_container .form{
     background-color: #fff;
     border: 1px solid #e6e6e6;
@@ -69,6 +70,22 @@
     /*display: flex;*/
     /*align-items: center;*/
 }
+
+.nick_check_fail{
+	color: red;
+	display: none;
+	
+}
+
+.nick_check_success{
+	
+	color: green;
+	display: none;
+	
+}
+
+
+
 
 
 

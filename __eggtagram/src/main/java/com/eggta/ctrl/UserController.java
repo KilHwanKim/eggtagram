@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -182,6 +183,13 @@ public class UserController {
 		reAttr.addFlashAttribute("result", msg);
 		ses.invalidate();
 		return "redirect:/";
+	}
+	
+	@ResponseBody
+	@PostMapping("/check/nick")
+	public String check_nick(@RequestParam("nickname") String nickname) {
+		int isExist =usv.checkNick(nickname);
+		return isExist == 1 ? "1" : "0";
 	}
 	
 	

@@ -45,7 +45,7 @@ public class UserServiceimp implements UserService{
 	@Override
 	public int checkNick(String nickname) {
 		// TODO Auto-generated method stub
-		return 0;
+		return udao.SelectNick(nickname);
 	}
 
 	@Override

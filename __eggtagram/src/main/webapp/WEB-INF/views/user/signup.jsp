@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <jsp:include page="../common/10_header.jsp"></jsp:include>
-<link rel="stylesheet" href="/resources/f-instagram-master/css/login.css">
+<link rel="stylesheet" href="/resources/f-instagram-master/css/login.css?var=1">
 
 
 <div id="main_container">
@@ -19,7 +19,9 @@
                 <p>친구들의 사진과 동영상을 보려면 가입하세요. </p>
                     <p class="login_user_name">
                         
-                        <input type="text" name="nickname" placeholder="nickname" required="required">
+                        <input type="text" name="nickname" placeholder="nickname" required="required" id="nick_input">
+                        <span class="nick_check_fail"> 중복됩니다!!</span>
+                        <span class="nick_check_success"> 사용가능 합니다!!</span>
                     </p>
                     <p class="login_user_name">
                         
@@ -63,4 +65,35 @@
     </div>
 
 </section>
+<script type="text/javascript">
+$("#nick_input").on("keyup",function(){
+	let nickVal = $("#nick_input").val();
+	console.log(nickVal);
+	$.ajax({
+		url: "/user/check/nick",
+		type: "post",
+		data: {nickname : nickVal}
+		
+	}).done(function(e){
+		console.log(e);
+		if (e == "0" && nickVal !=""){
+			console.log("성공");
+			$('.nick_check_success').css("display","inline-block");
+			$('.nick_check_fail').css("display","none");
+			
+		}
+		else {
+			$('.nick_check_success').css("display","none");
+			$('.nick_check_fail').css("display","inline-block");
+			console.log("실패");
+			$('#submit_btn').attr('disabled', true);
+		}
+		
+		
+	});
+	
+	
+});
+
+</script>
 <jsp:include page="../common/90_footer.jsp"></jsp:include>

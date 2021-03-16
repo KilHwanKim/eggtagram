@@ -24,7 +24,7 @@ public class UserDAOimp implements UserDAO{
 	@Override
 	public int SelectNick(String nickname) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sql.selectOne(NAME_SPACE+"checknick",nickname);
 	}
 
 	@Override
