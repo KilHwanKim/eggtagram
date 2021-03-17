@@ -33,7 +33,7 @@ public class UserServiceimp implements UserService{
 	@Override
 	public int modify(UserVO uvo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return udao.update(uvo);
 	}
 
 	@Override

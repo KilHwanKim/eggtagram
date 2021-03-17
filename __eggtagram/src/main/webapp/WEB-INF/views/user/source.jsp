@@ -14,7 +14,7 @@
 
 			<div class="col-sm-8 ">
 				
-				<img src="/resources/f-instagram-master/imgs/capture.JPG" class="d-block" height="400px">
+				<img src="/resources/f-instagram-master/imgs/css.jpg" class="d-block" height="400px">
 				<div>
 				<br>
 				<p>css는 kind-bear님의 css를 사용하였습니다. </p>

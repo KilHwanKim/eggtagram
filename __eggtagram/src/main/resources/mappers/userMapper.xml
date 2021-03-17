@@ -29,6 +29,13 @@
 	
 	</select>
 	
+	<update id="edit" parameterType="uvo">
+	update tbl_user set nickname = #{nickname}, ismen = #{ismen}, usercomment = #{usercomment}
+	where email = #{email}
+	
+	
+	</update>
+	
 	<delete id="resign" parameterType="java.lang.String">
 	delete from tbl_user where nickname = #{nickname}
 	

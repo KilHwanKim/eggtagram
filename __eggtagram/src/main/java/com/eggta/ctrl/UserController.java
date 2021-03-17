@@ -4,10 +4,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.List;
 
-
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
-
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,101 +35,102 @@ import com.eggta.service.UserService;
 public class UserController {
 
 	private static Logger logger = LoggerFactory.getLogger(UserController.class);
-	
+
 	@Inject
 	private BCryptPasswordEncoder bcpEncoder;
-	
+
 	@Inject
 	private UserService usv;
-	
-	@Inject 
+
+	@Inject
 	private ArticleService asv;
 
-	@Inject 
+	@Inject
 	private FileService fsv;
 	@Inject
 	private FileProcessor fp;
-	
-	
+
 	@GetMapping("/signup")
 	public void signup() {
 		logger.info(">>> /user/signup - GET");
 	}
-	
+
 	@PostMapping("/signup")
 	public String signup(UserVO uvo, RedirectAttributes reAttr) {
 		logger.info(">>> /user/signup - POST");
 		String encPwd = bcpEncoder.encode(uvo.getPwd());
 		uvo.setPwd(encPwd);
 		int isUP = usv.join(uvo);
-		String msg = isUP > 0 ? uvo.getEmail() +"님 가입 완료입니다.": "가입 오류!";
+		String msg = isUP > 0 ? uvo.getEmail() + "님 가입 완료입니다." : "가입 오류!";
 		reAttr.addFlashAttribute("result", msg);
 		return "redirect:/";
 	}
+
 	@GetMapping("/login")
 	public void login() {
 		logger.info(">>> /user/login - GET");
 	}
+
 	@PostMapping("/login")
-	public String login(UserVO uvo,HttpSession ses,RedirectAttributes reAttr ) {
-		
-		if ( ses.getAttribute("login") !=null ){
-            
-            ses.removeAttribute("login");
-        }
-		logger.info(">>> uvo의 eamil:"+uvo.getEmail());
+	public String login(UserVO uvo, HttpSession ses, RedirectAttributes reAttr) {
+
+		if (ses.getAttribute("login") != null) {
+
+			ses.removeAttribute("login");
+		}
+		logger.info(">>> uvo의 eamil:" + uvo.getEmail());
 		UserVO dbinfo = usv.login(uvo.getEmail());
 		String PWD = dbinfo.getPwd();
-		logger.info(">>>dbinfo의 비밀번호 "+dbinfo.getPwd());
+		logger.info(">>>dbinfo의 비밀번호 " + dbinfo.getPwd());
 		boolean isEqual = bcpEncoder.matches(uvo.getPwd(), PWD);
-		logger.info("isEqual"+isEqual);
-		if(isEqual) {
+		logger.info("isEqual" + isEqual);
+		if (isEqual) {
 			ses.setAttribute("login", dbinfo);
 			ses.setMaxInactiveInterval(60 * 30);
-			return "redirect:/";}
-		else {
-			String msg =  "로그인실패" ;
+			return "redirect:/";
+		} else {
+			String msg = "로그인실패";
 			reAttr.addFlashAttribute("result", msg);
 			return "redirect:/user/login";
 		}
-		
+
 	}
-	
-	
-	@GetMapping(value ="/profile/{nickname}" ,produces = "application/text; charset=UTF-8")
-	public String profile(Model model,@PathVariable String nickname) {
-		logger.info(">>> test nickname = " +nickname);
-		model.addAttribute("uvo",usv.getMember(nickname));
+
+	@GetMapping(value = "/profile/{nickname}", produces = "application/text; charset=UTF-8")
+	public String profile(Model model, @PathVariable String nickname) {
+		logger.info(">>> test nickname = " + nickname);
+		model.addAttribute("uvo", usv.getMember(nickname));
 		List<ArticleVO> list = asv.getprofile(nickname);
 		logger.info(">>> test list" + list.toString());
 		for (ArticleVO avo : list) {
-			if (fsv.getFile(avo.getAno()).size()> 0 ) {
+			if (fsv.getFile(avo.getAno()).size() > 0) {
 				FileVO thumb = fsv.getFile(avo.getAno()).get(0);
-				avo.setThumb(thumb.getSavedir()+"\\"+thumb.getUuid()+"_th_"+thumb.getFname());
-				
+				avo.setThumb(thumb.getSavedir() + "\\" + thumb.getUuid() + "_th_" + thumb.getFname());
+
 			}
-			
-			
+
 		}
 		String profile = "";
-		FileVO fvo=fsv.getFile(nickname);
+		FileVO fvo = fsv.getFile(nickname);
 		if (fvo != null) {
-		profile = fvo.getSavedir()+"\\"+fvo.getUuid()+"_th_"+fvo.getFname();}
-		else {
-		profile = "";
+			profile = fvo.getSavedir() + "\\" + fvo.getUuid() + "_th_" + fvo.getFname();
+		} else {
+			profile = "";
 		}
-		model.addAttribute("profile",profile);
+		model.addAttribute("profile", profile);
 		model.addAttribute("a_list", list);
-		model.addAttribute("article_count",list.size());
-		model.addAttribute("belong_count",0);//팔로워
-		model.addAttribute("target_count",0);
+		model.addAttribute("article_count", list.size());
+		model.addAttribute("belong_count", 0);// 팔로워
+		model.addAttribute("target_count", 0);
 
 		return "user/profile";
 	}
-	@PostMapping(value ="/profile/{nickname}")
-	public String proflie(@PathVariable String nickname ,@RequestParam(name="photo") MultipartFile[]files) throws UnsupportedEncodingException {
-		logger.info(">>> test post"+nickname);
-		if(files[0].getSize() > 0) {
+
+	@PostMapping(value = "/profile/{nickname}")
+	public String proflie(@PathVariable String nickname, @RequestParam(name = "photo") MultipartFile[] files)
+			throws UnsupportedEncodingException {
+		logger.info(">>> test post" + nickname);
+		if (files[0].getSize() > 0) {
 			/* 이미 있는 파일 제거 */
 			int isUP = fp.deleteOldFiles(nickname);
 			if (isUP > 0) {
@@ -140,67 +139,85 @@ public class UserController {
 			fp.uploadFiles(files, nickname);
 		}
 		String ennick = URLEncoder.encode(nickname, "UTF-8");
-		
-		return "redirect:./"+ennick;
+
+		return "redirect:./" + ennick;
 	}
-	
-	
-		
-	
-	
+
 	@GetMapping("/logout")
-	public String logout(HttpSession ses,RedirectAttributes reAttr) {
+	public String logout(HttpSession ses, RedirectAttributes reAttr) {
 		logger.info(">>>> /user/logout - GET");
-		
-		logger.info("result>>>>"+reAttr.toString());
+
+		logger.info("result>>>>" + reAttr.toString());
 		ses.invalidate();
 		logger.info(reAttr.toString());
-		logger.info("result>>>>"+reAttr.toString());
+		logger.info("result>>>>" + reAttr.toString());
 		reAttr.addFlashAttribute("result", "로그아웃 완료~");
-		
+
 		return "redirect:/";
 	}
+
 	@GetMapping("/edit")
-	public void edit() {
+	public void edit(HttpSession ses, Model model) {
+
+		UserVO uvo = (UserVO) ses.getAttribute("login");
+		logger.info("email>>>" + uvo.getEmail());
+		model.addAttribute("uvo", uvo);
+
 		
+		
+		
+		
+
 	}
+
+	@PostMapping("/edit")
+	public String edit(UserVO uvo, HttpSession ses, RedirectAttributes reAttr) {
+		int isUP = usv.modify(uvo);
+		if (ses.getAttribute("login") != null) {
+
+			ses.removeAttribute("login");
+		}
+		ses.setAttribute("login", uvo);
+		ses.setMaxInactiveInterval(60 * 30);
+
+		return "redirect:/";
+
+	}
+
 	@GetMapping("/source")
 	public void source() {
-		
+
 	}
+
 	@GetMapping("/resign")
 	public void resign() {
-		
+
 	}
+
 	@PostMapping("/resign")
-	public String resign(@RequestParam("nickname") String nickname,HttpSession ses,RedirectAttributes reAttr) {
-		
-		
-		logger.info("resgin-post :nickname:>>>"+nickname);
+	public String resign(@RequestParam("nickname") String nickname, HttpSession ses, RedirectAttributes reAttr) {
+
+		logger.info("resgin-post :nickname:>>>" + nickname);
 		int isRm = usv.resign(nickname);
-		logger.info("resign isRm: "+isRm);
+		logger.info("resign isRm: " + isRm);
 		String msg = isRm > 0 ? nickname + "님 탈퇴완료~" : "탈퇴 오류!";
 		reAttr.addFlashAttribute("result", msg);
 		ses.invalidate();
 		return "redirect:/";
 	}
-	
+
 	@ResponseBody
 	@PostMapping("/check/nick")
 	public String check_nick(@RequestParam("nickname") String nickname) {
-		int isExist =usv.checkNick(nickname);
+		int isExist = usv.checkNick(nickname);
 		return isExist == 1 ? "1" : "0";
 	}
-	
-	
+
 	@ResponseBody
 	@PostMapping("/check/email")
 	public String check_email(@RequestParam("email") String email) {
-		int isExist =usv.checkEmail(email);
+		int isExist = usv.checkEmail(email);
 		return isExist == 1 ? "1" : "0";
 	}
-	
-	
-	
-	
+
 }

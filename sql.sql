@@ -27,6 +27,8 @@ content varchar(1000),
 regdate timestamp default now()
 );
 alter table tbl_article add foreign key (nickname) references tbl_user(nickname) on delete cascade;
+alter table tbl_comment add foreign key (nickname) references tbl_user(nickname) on update cascade;
+
 
 
 create table tbl_follow(
@@ -35,7 +37,9 @@ follower varchar(100),
 target varchar(100)
 );
 alter table tbl_follow add foreign key (follower) references tbl_user(nickname) on delete cascade;
+alter table tbl_follow add foreign key (follower) references tbl_user(nickname) on update cascade;
 alter table tbl_follow add foreign key (target) references tbl_user(nickname) on delete cascade;
+alter table tbl_follow add foreign key (target) references tbl_user(nickname) on update cascade;
 
 
 create table tbl_like(
@@ -43,8 +47,9 @@ ano int(255),
 cno int(255),
 nickname varchar(100)
 );
-alter table tbl_like add foreign key (ano) references tbl_article(ano) on delete cascade;
+alter table tbl_like add foreign key (ano) references tbl_article(ano) on  cascade;
 alter table tbl_like add foreign key (nickname) references tbl_user(nickname) on delete cascade;
+alter table tbl_like add foreign key (nickname) references tbl_user(nickname) on update cascade;
 
 
 
@@ -58,6 +63,7 @@ savedir varchar(100)
 );
 alter table tbl_file add foreign key (ano) references tbl_article(ano) on delete cascade;
 alter table tbl_file add foreign key (nickname) references tbl_user(nickname) on delete cascade;
+alter table tbl_file add foreign key (nickname) references tbl_user(nickname) on update cascade;
 
 create table tbl_comment(
 cno int(255) auto_increment primary key,
@@ -68,3 +74,14 @@ regdate timestamp default now()
 );
 alter table tbl_comment add foreign key (ano) references tbl_article(ano) on delete cascade;
 alter table tbl_comment add foreign key (nickname) references tbl_user(nickname) on delete cascade;
+alter table tbl_comment add foreign key (nickname) references tbl_user(nickname) on update cascade;
+
+
+
+
+
+
+
+
+
+

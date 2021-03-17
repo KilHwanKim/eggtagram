@@ -42,7 +42,7 @@ public class UserDAOimp implements UserDAO{
 	@Override
 	public int update(UserVO uvo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sql.update(NAME_SPACE+"edit",uvo);
 	}
 
 	@Override

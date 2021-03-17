@@ -21,3 +21,15 @@
 	display: inline-flex;
 	
 }
+.nick_check_fail{
+	color: red;
+	display: none;
+	
+}
+
+.nick_check_success{
+	
+	color: green;
+	display: none;
+	
+}
