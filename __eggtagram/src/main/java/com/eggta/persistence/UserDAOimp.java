@@ -30,7 +30,7 @@ public class UserDAOimp implements UserDAO{
 	@Override
 	public int SelectEmail(String email) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sql.selectOne(NAME_SPACE+"checkemail",email);
 	}
 
 	@Override

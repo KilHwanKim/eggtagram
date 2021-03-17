@@ -24,6 +24,10 @@
 	select count(nickname) from tbl_user where nickname = #{nickname}
 	
 	</select>
+	<select id="checkemail" parameterType="java.lang.String" resultType="java.lang.Integer">
+	select count(nickname) from tbl_user where email = #{email}
+	
+	</select>
 	
 	<delete id="resign" parameterType="java.lang.String">
 	delete from tbl_user where nickname = #{nickname}

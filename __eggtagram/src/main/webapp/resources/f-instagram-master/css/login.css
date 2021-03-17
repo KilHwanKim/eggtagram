@@ -83,6 +83,18 @@
 	display: none;
 	
 }
+.email_check_fail{
+	color: red;
+	display: none;
+	
+}
+
+.email_check_success{
+	
+	color: green;
+	display: none;
+	
+}
 
 
 

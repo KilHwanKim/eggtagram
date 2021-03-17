@@ -51,7 +51,7 @@ public class UserServiceimp implements UserService{
 	@Override
 	public int checkEmail(String email) {
 		// TODO Auto-generated method stub
-		return 0;
+		return udao.SelectEmail(email);
 	}
 	@Override
 	public UserVO login(String email) {

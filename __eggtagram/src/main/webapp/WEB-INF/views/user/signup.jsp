@@ -25,7 +25,9 @@
                     </p>
                     <p class="login_user_name">
                         
-                        <input type="email" name="email" placeholder="only email"required="required">
+                        <input type="email" name="email" placeholder="only email"required="required" id="email_input">
+                        <span class="email_check_fail"> 중복됩니다!!</span>
+                        <span class="email_check_success"> 사용가능 합니다!!</span>
                     </p>
 
                     <p class="login_user_password">
@@ -68,6 +70,7 @@
 <script type="text/javascript">
 $("#nick_input").on("keyup",function(){
 	let nickVal = $("#nick_input").val();
+	$('#submit_btn').attr('disabled', false);
 	console.log(nickVal);
 	$.ajax({
 		url: "/user/check/nick",
@@ -85,6 +88,35 @@ $("#nick_input").on("keyup",function(){
 		else {
 			$('.nick_check_success').css("display","none");
 			$('.nick_check_fail').css("display","inline-block");
+			console.log("실패");
+			$('#submit_btn').attr('disabled', true);
+		}
+		
+		
+	});
+	
+	
+});
+$("#email_input").on("keyup",function(){
+	let emailVal = $("#email_input").val();
+	console.log(emailVal);
+	$('#submit_btn').attr('disabled', false);
+	$.ajax({
+		url: "/user/check/email",
+		type: "post",
+		data: {email : emailVal}
+		
+	}).done(function(e){
+		console.log(e);
+		if (e == "0" && emailVal !=""){
+			console.log("성공");
+			$('.email_check_success').css("display","inline-block");
+			$('.email_check_fail').css("display","none");
+			
+		}
+		else {
+			$('.email_check_success').css("display","none");
+			$('.email_check_fail').css("display","inline-block");
 			console.log("실패");
 			$('#submit_btn').attr('disabled', true);
 		}

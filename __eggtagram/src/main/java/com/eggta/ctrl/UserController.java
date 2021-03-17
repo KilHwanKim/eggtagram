@@ -193,6 +193,14 @@ public class UserController {
 	}
 	
 	
+	@ResponseBody
+	@PostMapping("/check/email")
+	public String check_email(@RequestParam("email") String email) {
+		int isExist =usv.checkEmail(email);
+		return isExist == 1 ? "1" : "0";
+	}
+	
+	
 	
 	
 }
