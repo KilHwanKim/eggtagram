@@ -22,6 +22,11 @@
 	select * from tbl_article where ano = #{ano}
 	
 	</select>
+	
+	<delete id="remove" parameterType="java.lang.Integer">
+	delete from tbl_article where ano =#{ano}
+	
+	</delete>
 
 
 

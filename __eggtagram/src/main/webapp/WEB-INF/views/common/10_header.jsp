@@ -18,7 +18,7 @@
 <link rel="stylesheet"
 	href="/resources/f-instagram-master/css/reset.css">
 <link rel="stylesheet"
-	href="/resources/f-instagram-master/css/common.css">
+	href="/resources/f-instagram-master/css/common.css?ver=1">
 <link rel="stylesheet"
 	href="/resources/f-instagram-master/css/style.css">
 <link rel="shortcut icon"

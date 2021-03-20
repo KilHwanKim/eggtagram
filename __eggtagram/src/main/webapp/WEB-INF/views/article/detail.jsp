@@ -109,6 +109,11 @@
 					<header class="top">
 						<div class="user_container">
 							<div class="profile_img">
+								<c:if test="${thumb eq null }">
+									<img src="/resources/f-instagram-master/imgs/default.jpg"
+										alt="착한호랑이">
+
+								</c:if>
 								<img src="/uploads/${thumb }" alt="">
 							</div>
 							<div class="user_name">
@@ -116,13 +121,35 @@
 								<div class="country">Seoul, South Korea</div>
 							</div>
 						</div>
-						<div class="sprite_more_icon" data-name="more">
-							<ul class="more_detail">
-								<li>팔로우</li>
-								<li>수정</li>
-								<li>삭제</li>
-							</ul>
+
+						<!-- Button to Open the Modal -->
+						<div class="sprite_X_icon" data-toggle="modal"
+							data-target="#delete_content"></div>
+
+
+						<div class="modal fade" id="delete_content">
+							<div class="modal-dialog">
+								<div class="modal-content text-center">
+
+									<div class="list-group">
+										<form action="/article/delete" method="post">
+										<input type="text" name="nickname" hidden="" value="${avo.nickname }">
+										<input type="number" name="ano" hidden="" value="${avo.ano }">
+										<input type="submit" class="list-group-item list-group-item-action" value="게시물 삭제" >
+										
+										</form>
+										
+										 <a href="#"
+											class="list-group-item list-group-item-action" data-dismiss="modal" >취소</a>
+									</div>
+
+
+								</div>
+							</div>
 						</div>
+
+
+
 
 					</header>
 
@@ -144,9 +171,9 @@
 									<div class="time">${cvo.regdate }</div>
 									<div class="icon_wrap">
 										<div class="more_trigger">
-											<div class="sprite_more_icon"></div>
+											<div class="sprite_X_icon"></div>
 										</div>
-										
+
 										<div class="small_heart_btn">
 											<div class="sprite_small_heart_icon_outline"></div>
 										</div>
@@ -186,14 +213,13 @@
 					<div class="timer">${avo.regdate }</div>
 
 					<div class="commit_field">
-						<form action="/comment/write" method="post" id="comment_form" >
+						<form action="/comment/write" method="post" id="comment_form">
 							<input type="text" placeholder="댓글달기.." name="content"
 								required="required"> <input type="text" hidden=""
-								name="ano" value="${avo.ano }" id="ano"> <input type="text" 
-								hidden="" name="nickname" value="${login.nickname }" id="nickname">
-
-							
-								<input class="submit" type="submit" value="게시" > 
+								name="ano" value="${avo.ano }" id="ano"> <input
+								type="text" hidden="" name="nickname" value="${login.nickname }"
+								id="nickname"> <input class="submit" type="submit"
+								value="게시">
 						</form>
 
 					</div>
@@ -228,15 +254,12 @@
 		$(document).on("click", ".heart_btn", function(e) {
 			let anoval = $("#ano").val();
 			let nicknameval = $("#nickname").val();
-			
+
 			if ($(this).children('div').hasClass("on") === true) {
-				
-				
+
 				$(this).children('div').removeClass("on");
 			} else {
 				$(this).children('div').addClass("on");
-				
-				
 
 			}
 

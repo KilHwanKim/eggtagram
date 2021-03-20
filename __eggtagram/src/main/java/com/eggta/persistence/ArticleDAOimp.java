@@ -46,7 +46,7 @@ public class ArticleDAOimp implements ArticleDAO{
 	@Override
 	public int delete(Integer ano) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sql.delete(NAME_SPACE+"remove", ano);
 	}
 
 	@Override

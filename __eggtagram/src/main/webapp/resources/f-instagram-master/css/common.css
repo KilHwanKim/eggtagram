@@ -52,6 +52,12 @@ body {
     width: 15px;
     height: 3px;
 }
+.sprite_X_icon {
+    display: inline-block;
+    background: url('../imgs/background01.png') no-repeat -325px -130px;
+    width: 30px;
+    height: 25px;
+}
 
 .sprite_bubble_icon {
     display: inline-block;

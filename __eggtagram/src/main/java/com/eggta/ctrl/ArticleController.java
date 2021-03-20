@@ -1,5 +1,7 @@
 package com.eggta.ctrl;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
@@ -7,6 +9,7 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.eggta.domain.ArticleVO;
 import com.eggta.domain.CommentVO;
@@ -50,15 +54,13 @@ public class ArticleController {
 	private ArticleService asv;
 	@Inject
 	private UserService usv;
-	
+
 	@Inject
 	private FileService fsv;
-	
+
 	@Inject
 	private CommentService csv;
 
-	
-	
 	private static final Logger logger = LoggerFactory.getLogger(ArticleController.class);
 
 	@GetMapping("/register")
@@ -87,28 +89,44 @@ public class ArticleController {
 	public String detail(Model model, @PathVariable Integer ano) {
 		model.addAttribute("avo", asv.getDetail(ano));
 		List<FileVO> filelist = fsv.getFile(ano);
-		logger.info("길이 : "+filelist.size());
-		model.addAttribute("f_list",filelist);
-		model.addAttribute("f_size",filelist.size()-1);
-		List <CommentVO> c_list = csv.getList(ano);
+		logger.info("길이 : " + filelist.size());
+		model.addAttribute("f_list", filelist);
+		model.addAttribute("f_size", filelist.size() - 1);
+		List<CommentVO> c_list = csv.getList(ano);
 		for (CommentVO cvo : c_list) {
-			if ( fsv.getFile(cvo.getNickname()) !=null){
+			if (fsv.getFile(cvo.getNickname()) != null) {
 				FileVO thumb = fsv.getFile(cvo.getNickname());
-				cvo.setThumb(thumb.getSavedir()+"\\"+thumb.getUuid()+"_th_"+thumb.getFname());
-				
+				cvo.setThumb(thumb.getSavedir() + "\\" + thumb.getUuid() + "_th_" + thumb.getFname());
+
 			}
-			
+
 		}
 		FileVO myfvo = fsv.getFile(asv.getDetail(ano).getNickname());
-		logger.info("mynickname"+asv.getDetail(ano).getNickname());
-		String my_thumb = myfvo.getSavedir() +"\\"+myfvo.getUuid()+"_th_"+myfvo.getFname();
-		logger.info("mythumb"+my_thumb);
-		model.addAttribute("thumb",my_thumb);
-		model.addAttribute("c_list",c_list);
-		
-		
+		if (myfvo != null) {
+			logger.info("mynickname" + asv.getDetail(ano).getNickname());
+			String my_thumb = myfvo.getSavedir() + "\\" + myfvo.getUuid() + "_th_" + myfvo.getFname();
+			logger.info("mythumb" + my_thumb);
+			model.addAttribute("thumb", my_thumb);
+
+		}
+		model.addAttribute("c_list", c_list);
 
 		return "article/detail";
 	}
+	
+	@PostMapping("/delete")
+	public String delete(HttpSession ses ,@RequestParam("nickname") String nickname,@RequestParam("ano") Integer ano ,RedirectAttributes reAttr) throws UnsupportedEncodingException {
+		logger.info("nickname>>>"+nickname);
+		String encodedParam = URLEncoder.encode(nickname,"UTF-8");
+		
+		
+		int isUP = asv.remove(ano);
+		String msg = isUP > 0 ? "게시글 삭제 완료" : "게시글 삭제 실패";		
+		reAttr.addFlashAttribute("result", msg);
+		
+		return "redirect:/user/profile/"+encodedParam;
+	}
+	
+	
 
 }
