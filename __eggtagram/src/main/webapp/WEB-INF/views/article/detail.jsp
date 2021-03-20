@@ -114,7 +114,11 @@
 										alt="착한호랑이">
 
 								</c:if>
-								<img src="/uploads/${thumb }" alt="">
+								<c:if test="${!(thumb eq null) }">
+									<img src="/uploads/${thumb }" alt="">
+
+								</c:if>
+								
 							</div>
 							<div class="user_name">
 								<div class="nick_name">${avo.nickname }</div>
@@ -122,6 +126,8 @@
 							</div>
 						</div>
 
+						
+						<c:if test="${avo.nickname eq login.nickname }">
 						<!-- Button to Open the Modal -->
 						<div class="sprite_X_icon" data-toggle="modal"
 							data-target="#delete_content"></div>
@@ -147,6 +153,7 @@
 								</div>
 							</div>
 						</div>
+						</c:if>
 
 
 
