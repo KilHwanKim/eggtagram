@@ -118,7 +118,7 @@
 									<img src="/uploads/${thumb }" alt="">
 
 								</c:if>
-								
+
 							</div>
 							<div class="user_name">
 								<div class="nick_name">${avo.nickname }</div>
@@ -126,33 +126,36 @@
 							</div>
 						</div>
 
-						
+
 						<c:if test="${avo.nickname eq login.nickname }">
-						<!-- Button to Open the Modal -->
-						<div class="sprite_X_icon" data-toggle="modal"
-							data-target="#delete_content"></div>
+							<!-- Button to Open the Modal -->
+							<div class="sprite_more_icon" data-toggle="modal"
+								data-target="#delete_content"></div>
 
 
-						<div class="modal fade" id="delete_content">
-							<div class="modal-dialog">
-								<div class="modal-content text-center">
+							<div class="modal fade" id="delete_content">
+								<div class="modal-dialog">
+									<div class="modal-content text-center">
 
-									<div class="list-group">
-										<form action="/article/delete" method="post">
-										<input type="text" name="nickname" hidden="" value="${avo.nickname }">
-										<input type="number" name="ano" hidden="" value="${avo.ano }">
-										<input type="submit" class="list-group-item list-group-item-action" value="게시물 삭제" >
-										
-										</form>
-										
-										 <a href="#"
-											class="list-group-item list-group-item-action" data-dismiss="modal" >취소</a>
+										<div class="list-group">
+											<form action="/article/delete" method="post">
+												<input type="text" name="nickname" hidden=""
+													value="${avo.nickname }"> <input type="number"
+													name="ano" hidden="" value="${avo.ano }"> <input
+													type="submit"
+													class="list-group-item list-group-item-action"
+													value="게시물 삭제">
+
+											</form>
+
+											<a href="#" class="list-group-item list-group-item-action"
+												data-dismiss="modal">취소</a>
+										</div>
+
+
 									</div>
-
-
 								</div>
 							</div>
-						</div>
 						</c:if>
 
 
@@ -177,8 +180,15 @@
 										class="user_id">${cvo.nickname }</span></a> ${cvo.content }
 									<div class="time">${cvo.regdate }</div>
 									<div class="icon_wrap">
-										<div class="more_trigger">
-											<div class="sprite_X_icon"></div>
+										<div class="more_trigger" data-cno="${cvo.cno }"
+											data-ano="${avo.ano }">
+
+
+											<div>x</div>
+
+
+
+
 										</div>
 
 										<div class="small_heart_btn">
@@ -190,6 +200,7 @@
 
 
 						</c:forEach>
+
 
 
 
@@ -274,11 +285,27 @@
 		$(document).on("click", ".small_heart_btn", function() {
 			if ($(this).children('div').hasClass("on") === true) {
 				$(this).children('div').removeClass("on");
-
 			} else {
 				$(this).children('div').addClass("on");
-
 			}
+		});
+
+		$(document).on("click", ".more_trigger", function() {
+			let select = $(this);
+			let cnoVal = select.data("cno");
+			let anoVal = select.data("ano");
+			$.ajax({
+				url : "/comment/remove",
+				type : "post",
+				data : {
+					cno : cnoVal,
+					ano : anoVal
+				}
+			}).done(function(e) {
+
+				location.reload();
+
+			});
 
 		});
 

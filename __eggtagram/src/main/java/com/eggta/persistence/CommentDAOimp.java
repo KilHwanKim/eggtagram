@@ -27,7 +27,7 @@ public class CommentDAOimp implements CommentDAO {
 	@Override
 	public int delete(int cno) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sql.delete(NAME_SPACE+"remove",cno);
 	}
 
 	@Override

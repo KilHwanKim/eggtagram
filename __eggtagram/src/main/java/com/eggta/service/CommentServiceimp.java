@@ -30,7 +30,7 @@ public class CommentServiceimp implements CommentService{
 	@Override
 	public int remove(int cno) {
 		// TODO Auto-generated method stub
-		return 0;
+		return cdao.delete(cno);
 	}
 
 	@Override
