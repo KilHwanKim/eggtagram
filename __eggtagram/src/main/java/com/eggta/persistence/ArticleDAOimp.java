@@ -55,6 +55,12 @@ public class ArticleDAOimp implements ArticleDAO{
 		return 0;
 	}
 
+	@Override
+	public List<ArticleVO> selectList() {
+		// TODO Auto-generated method stub
+		return sql.selectList(NAME_SPACE+"all");
+	}
+
 	
 
 }

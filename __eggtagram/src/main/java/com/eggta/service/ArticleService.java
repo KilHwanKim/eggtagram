@@ -9,6 +9,7 @@ public interface ArticleService {
 	public List<ArticleVO> getprofile(String nickname);
 	public ArticleVO getDetail(Integer ano);
 	public int getCurrAno();
+	public List <ArticleVO> getall();
 	public int remove(Integer ano);
 	public int edit(ArticleVO avo);
 	

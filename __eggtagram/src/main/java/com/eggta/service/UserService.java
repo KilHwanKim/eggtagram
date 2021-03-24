@@ -11,7 +11,7 @@ public interface UserService {
 	public int join(UserVO uvo);//회원가입
 	public UserVO login(String email);//로그인
 	public UserVO getMember(String nickname);//프로파일
-	public List <UserVO> getList();
+	public List <UserVO> getList(); //메인 화면
 	public int modify(UserVO uvo);
 	public int resign(String nickname);//
 	public int checkNick(String nickname);

@@ -52,6 +52,12 @@ public class ArticleServiceimp implements ArticleService{
 		return udao.update(avo);
 	}
 
+	@Override
+	public List<ArticleVO> getall() {
+		// TODO Auto-generated method stub
+		return udao.selectList();
+	}
+
 	
 
 }

@@ -1,5 +1,7 @@
 package com.eggta.persistence;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -58,6 +60,8 @@ public class UserDAOimp implements UserDAO{
 		// TODO Auto-generated method stub
 		return sql.selectOne(NAME_SPACE+"nick", email);
 	}
+
+	
 
 
 }
