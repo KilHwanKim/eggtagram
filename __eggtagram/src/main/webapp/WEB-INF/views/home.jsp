@@ -146,10 +146,11 @@
 							alt="프로필사진">
 					</div>
 					<div class="detail ">
-						<div class="id">${uvo.nickname }</div>
+						<div class="id"> <a class="user_id" href="/user/profile/${uvo.nickname }">${uvo.nickname }</a> </div>
 					</div>
 					<div class="text-primary mr-3 FAL"
-						style="position: absolute; right: 18px;">팔로우</div>
+						style="position: absolute; right: 18px;" data-target="${uvo.nickname }"
+										data-follower="${login.nickname }">팔로우</div>
 				</div>
 				</c:forEach>
 				
@@ -165,17 +166,38 @@
 <script type="text/javascript">
 	$(function() {
 		$(document).on("click", ".FAL", function() {
-
+			let select = $(this);
+			let targetVal = select.data("target");
+			let followerVal = select.data("follower");
 			if ($(this).hasClass("text-primary")) {
 
 				$(this).removeClass("text-primary");
 				$(this).text("팔로우 취소");
 				
+				
+				$.ajax({
+					url : "/follow/add",
+					type : "post",
+					data : {
+						target : targetVal,
+						follower : followerVal
+					}
+				
+				});
 
 			} else {
 
 				$(this).addClass("text-primary");
 				$(this).text("팔로우");
+				$.ajax({
+					url : "/follow/cancle",
+					type : "post",
+					data : {
+						target : targetVal,
+						follower : followerVal
+					}
+				
+				});
 			}
 
 		})
