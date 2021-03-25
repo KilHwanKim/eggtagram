@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.eggta.domain.FollowVO;
+import com.eggta.domain.UserVO;
 
 @Repository
 public class FollowDAOimp implements FollowDAO{
@@ -35,7 +36,7 @@ public class FollowDAOimp implements FollowDAO{
 	}
 
 	@Override
-	public List<String> selectList(String nickname) {
+	public List<UserVO> selectList(String nickname) {
 		// TODO Auto-generated method stub
 		return sql.selectList(NAME_SPACE+"recommand",nickname);
 	}

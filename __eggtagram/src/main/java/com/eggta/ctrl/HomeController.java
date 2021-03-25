@@ -22,6 +22,7 @@ import com.eggta.domain.UserVO;
 import com.eggta.service.ArticleService;
 import com.eggta.service.CommentService;
 import com.eggta.service.FileService;
+import com.eggta.service.FollowService;
 
 
 /**
@@ -37,9 +38,10 @@ public class HomeController {
 	 */
 	
 	
-	@Inject ArticleService asv;
-	@Inject FileService fsv;
-	@Inject CommentService csv;
+	@Inject private ArticleService asv;
+	@Inject private FileService fsv;
+	@Inject private CommentService csv;
+	@Inject private FollowService fosv;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model,HttpSession ses) {
@@ -74,6 +76,11 @@ public class HomeController {
 			model.addAttribute("thumb", my_thumb);
 
 		}
+		
+		model.addAttribute("recommand_list",fosv.recommand(uvo.getNickname()));
+		
+		
+		
 	
 		
 		

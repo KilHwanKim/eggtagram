@@ -39,10 +39,7 @@
 
 						<div class="sprite_more_icon" data-name="more">
 							<ul class="toggle_box">
-								<li><input type="submit" class="follow" value="팔로우"
-									data-name="follow"></li>
-								<li>수정</li>
-								<li>삭제</li>
+								
 							</ul>
 						</div>
 					</header>
@@ -60,7 +57,7 @@
 					<div class="bottom_icons">
 						<div class="left_icons">
 							<div class="heart_btn">
-								<div class="sprite_heart_icon_outline" name="39"
+								<div class="sprite_heart_icon_outline" 
 									data-name="heartbeat"></div>
 							</div>
 							<a href="/article/detail/${avo.ano }"><div
@@ -84,20 +81,21 @@
 						</div>
 
 					</div>
-						<div class="comment_container">
-						<a href="/article/detail/${avo.ano }" class="text-secondary">댓글 전체 보기 </a>
-						</div>
-					<c:forEach items="${avo.comment_list}" var="cvo" end="2">
-					
 					<div class="comment_container">
+						<a href="/article/detail/${avo.ano }" class="text-secondary">댓글
+							전체 보기 </a>
+					</div>
+					<c:forEach items="${avo.comment_list}" var="cvo" end="2">
 
-						<div>
-							<a href="/user/profile/${cvo.nickname }"><span
-								class="user_id">${cvo.nickname }</span></a> ${cvo.content }
+						<div class="comment_container">
+
+							<div>
+								<a href="/user/profile/${cvo.nickname }"><span
+									class="user_id">${cvo.nickname }</span></a> ${cvo.content }
+							</div>
+
 						</div>
 
-					</div>
-					
 					</c:forEach>
 
 					<div class="timer">${avo.regdate }</div>
@@ -141,46 +139,20 @@
 					<div>회원님을 위한 추천</div>
 					<div class="more">모두 보기</div>
 				</header>
-
+				<c:forEach items="${recommand_list}" var="uvo">
 				<div class="thumb_user">
 					<div class="profile_thumb">
 						<img src="/resources/f-instagram-master/imgs/thumb02.jpg"
 							alt="프로필사진">
 					</div>
-					<div class="detail " >
-						<div class="id">kind_tigerrrr </div>
+					<div class="detail ">
+						<div class="id">${uvo.nickname }</div>
 					</div>
-					<div class="text-primary mr-3" style="position: absolute; right: 18px;">팔로우</div>
+					<div class="text-primary mr-3 FAL"
+						style="position: absolute; right: 18px;">팔로우</div>
 				</div>
+				</c:forEach>
 				
-				<div class="thumb_user">
-					<div class="profile_thumb">
-						<img src="/resources/f-instagram-master/imgs/thumb02.jpg"
-							alt="프로필사진">
-					</div>
-					<div class="detail " >
-						<div class="id">kind_tigerrrr </div>
-					</div>
-					<div class="text-primary mr-3" style="position: absolute; right: 18px;">팔로우</div>
-				</div><div class="thumb_user">
-					<div class="profile_thumb">
-						<img src="/resources/f-instagram-master/imgs/thumb02.jpg"
-							alt="프로필사진">
-					</div>
-					<div class="detail " >
-						<div class="id">kind_tigerrrr </div>
-					</div>
-					<div class="text-primary mr-3" style="position: absolute; right: 18px;">팔로우</div>
-				</div><div class="thumb_user">
-					<div class="profile_thumb">
-						<img src="/resources/f-instagram-master/imgs/thumb02.jpg"
-							alt="프로필사진">
-					</div>
-					<div class="detail " >
-						<div class="id">kind_tigerrrr </div>
-					</div>
-					<div class="text-primary mr-3" style="position: absolute; right: 18px;">팔로우</div>
-				</div>
 			</article>
 		</div>
 
@@ -189,4 +161,25 @@
 </section>
 
 </section>
+
+<script type="text/javascript">
+	$(function() {
+		$(document).on("click", ".FAL", function() {
+
+			if ($(this).hasClass("text-primary")) {
+
+				$(this).removeClass("text-primary");
+				$(this).text("팔로우 취소");
+				
+
+			} else {
+
+				$(this).addClass("text-primary");
+				$(this).text("팔로우");
+			}
+
+		})
+
+	});
+</script>
 <jsp:include page="common/90_footer.jsp"></jsp:include>

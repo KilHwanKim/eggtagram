@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.eggta.domain.FollowVO;
+import com.eggta.domain.UserVO;
 
 public interface FollowService {
 	public int add (FollowVO fvo);
@@ -13,7 +14,7 @@ public interface FollowService {
 	public int check(FollowVO fvo);
 	public List<String> getfollower(String target);
 	public List<String> gettarget(String follower);
-	public List<String> recommand(String nickname);
+	public List<UserVO> recommand(String nickname);
 	
 	
 	

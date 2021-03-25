@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.eggta.domain.FollowVO;
+import com.eggta.domain.UserVO;
 import com.eggta.persistence.FollowDAO;
 
 @Service
@@ -35,9 +36,9 @@ public class FolowServiceimp implements FollowService{
 	}
 
 	@Override
-	public List<String> recommand(String nickname) {
+	public List<UserVO> recommand(String nickname) {
 		// TODO Auto-generated method stub
-		return null;
+		return fdao.selectList(nickname);
 	}
 
 	@Override

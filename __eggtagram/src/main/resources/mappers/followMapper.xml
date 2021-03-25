@@ -22,9 +22,10 @@
   
   </select>
   
-  <select id="recommand" parameterType="java.lang.String" resultType="java.lang.String">
-  
-  
+  <select id="recommand" parameterType="java.lang.String" resultType="uvo">
+  <![CDATA[
+  select * from tbl_user where nickname not in (select target from tbl_follow where follower = #{nickname}) and nickname != #{nickname} limit 5
+  ]]>
   
   </select>
   
