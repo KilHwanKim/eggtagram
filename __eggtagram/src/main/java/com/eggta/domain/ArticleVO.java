@@ -1,5 +1,6 @@
 package com.eggta.domain;
 
+import java.util.List;
 
 public class ArticleVO {
 	int ano;
@@ -7,6 +8,20 @@ public class ArticleVO {
 	String content;
 	String regdate;
 	String thumb;
+	List <FileVO> file_list;
+	List <CommentVO> comment_list;
+	public List<FileVO> getFile_list() {
+		return file_list;
+	}
+	public void setFile_list(List<FileVO> file_list) {
+		this.file_list = file_list;
+	}
+	public List<CommentVO> getComment_list() {
+		return comment_list;
+	}
+	public void setComment_list(List<CommentVO> comment_list) {
+		this.comment_list = comment_list;
+	}
 	public String getThumb() {
 		return thumb;
 	}

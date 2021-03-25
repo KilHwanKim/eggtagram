@@ -46,14 +46,38 @@
 					<form method="post" enctype="multipart/form-data" id="profile_form">
 						<input type="file" hidden="" id="id_profile" name="photo">
 
-						
+
 					</form>
 				</div>
 
 
 				<div class="detail">
 					<div class="top">
-						<div class="user_name">${uvo.nickname }</div>
+						<div class="user_name">${uvo.nickname }
+							<c:if test="${!(uvo.nickname eq login.nickname) }">
+								
+								<c:forEach items="${follower_list }" var="nick">
+								 
+									<c:if test="${nick == login.nickname }">
+									
+										<c:set var="flag" value="1"/>
+									</c:if>
+								</c:forEach>
+								
+
+								<c:if test="${(flag eq null) }">
+
+									<button class="btn btn-outline-primary" id="add_btn"
+										data-target="${uvo.nickname }"
+										data-follower="${login.nickname }">팔로우</button>
+								</c:if>
+								<c:if test="${(flag ne null) }">
+									<button class="btn btn-outline-secondary" id="cancle_btn"
+										data-target="${uvo.nickname }"
+										data-follower="${login.nickname }">팔로우 취소</button>
+								</c:if>
+							</c:if>
+						</div>
 
 
 
@@ -62,7 +86,7 @@
 
 					<ul class="middle">
 						<li><span>게시물</span> ${article_count}</li>
-						<li><span>팔로워</span> ${belong_count}</li>
+						<li><span>팔로워</span> ${follower_count}</li>
 						<li><span>팔로우</span> ${target_count}</li>
 					</ul>
 
@@ -107,9 +131,43 @@
 			$("#profile_form").submit();
 		});
 
-	});
+		$(document).on("click", "#add_btn", function() {
 
-	
+			let select = $(this);
+			let targetVal = select.data("target");
+			let followerVal = select.data("follower");
+			$.ajax({
+				url : "/follow/add",
+				type : "post",
+				data : {
+					target : targetVal,
+					follower : followerVal
+				}
+			}).done(function(e) {
+				location.reload();
+			});
+
+		});
+		$(document).on("click", "#cancle_btn", function() {
+
+			let select = $(this);
+			let targetVal = select.data("target");
+			let followerVal = select.data("follower");
+			$.ajax({
+				url : "/follow/cancle",
+				type : "post",
+				data : {
+					target : targetVal,
+					follower : followerVal
+				}
+			}).done(function(e) {
+				location.reload();
+
+			});
+
+		});
+
+	});
 </script>
 
 

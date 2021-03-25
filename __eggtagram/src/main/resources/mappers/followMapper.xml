@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="followMapper">
+  
+  <insert id="add" parameterType="fovo">
+  
+  insert into tbl_follow(follower,target) values(#{follower},#{target})
+  
+  </insert>
+  <delete id="cancle" parameterType="fovo">
+  
+  delete from tbl_follow where follower=#{follower} and target = #{target}
+  
+  </delete>
+  
+  <select id="ckeck" parameterType="fovo">
+  
+  select count(fno) from tbl_follow where follower=#{follower} and target = #{target}
+  
+  
+  </select>
+  
+  <select id="recommand" parameterType="java.lang.String" resultType="java.lang.String">
+  
+  
+  
+  </select>
+  
+  
+  <select id="follower" parameterType="java.lang.String" resultType="java.lang.String">
+  select follower from tbl_follow where target=#{target}
+  
+  
+  </select>
+  
+  <select id="target" parameterType="java.lang.String" resultType="java.lang.String">
+  select target from tbl_follow where follower=#{follower}
+  
+  
+  </select>
+  
+  
+  
+  </mapper>

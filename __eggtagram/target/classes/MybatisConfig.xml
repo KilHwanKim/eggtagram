@@ -7,5 +7,6 @@
 		<typeAlias type="com.eggta.domain.FileVO" alias="fvo" />
 		<typeAlias type="com.eggta.domain.CommentVO" alias="cvo" />
 		<typeAlias type="com.eggta.domain.LikeVO" alias="lvo" />
+		<typeAlias type="com.eggta.domain.FollowVO" alias="fovo" />
 	</typeAliases>
 </configuration>

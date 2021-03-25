@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 
 <jsp:include page="common/10_header.jsp"></jsp:include>
@@ -18,11 +18,20 @@
 					<header class="top">
 						<div class="user_container">
 							<div class="profile_img">
-								<img src="/resources/f-instagram-master/imgs/thumb.jpeg"
-									alt="프로필이미지">
+								<c:if test="${avo.thumb eq null }">
+									<img src="/resources/f-instagram-master/imgs/default.jpg"
+										alt="착한호랑이">
+
+								</c:if>
+								<c:if test="${!(avo.thumb eq null) }">
+									<img src="/uploads/${avo.thumb }" alt="">
+
+								</c:if>
 							</div>
 							<div class="user_name">
-								<div class="nick_name m_text">${avo.nickname }</div>
+								<div class="nick_name m_text">
+									<a class="user_id" href="/user/profile/${avo.nickname }">${avo.nickname }</a>
+								</div>
 								<div class="country s_text">Seoul, South Korea</div>
 							</div>
 
@@ -54,7 +63,8 @@
 								<div class="sprite_heart_icon_outline" name="39"
 									data-name="heartbeat"></div>
 							</div>
-							<a href="/article/detail/${avo.ano }"><div class="sprite_bubble_icon"></div> </a>
+							<a href="/article/detail/${avo.ano }"><div
+									class="sprite_bubble_icon"></div> </a>
 							<div class="sprite_share_icon" data-name="share"></div>
 						</div>
 						<div class="right_icon">
@@ -67,30 +77,35 @@
 							id="bookmark-count-39"></span> 개
 					</div>
 					<div class="comment_container">
-					
-					<div><a href="/user/profile/${avo.nickname }"><span
-										class="user_id">${avo.nickname }</span></a>  ${avo.content } </div>
-					
-					</div>
 
+						<div>
+							<a href="/user/profile/${avo.nickname }"><span
+								class="user_id">${avo.nickname }</span></a> ${avo.content }
+						</div>
+
+					</div>
+						<div class="comment_container">
+						<a href="/article/detail/${avo.ano }" class="text-secondary">댓글 전체 보기 </a>
+						</div>
+					<c:forEach items="${avo.comment_list}" var="cvo" end="2">
+					
 					<div class="comment_container">
-						<div class="comment" id="comment-list-ajax-post37">
-							<div class="comment-detail">
-								<div class="nick_name m_text">dongdong2</div>
-								<div>강아지가 너무 귀여워요~!</div>
-							</div>
+
+						<div>
+							<a href="/user/profile/${cvo.nickname }"><span
+								class="user_id">${cvo.nickname }</span></a> ${cvo.content }
 						</div>
-						<div class="small_heart">
-							<div class="sprite_small_heart_icon_outline"></div>
-						</div>
+
 					</div>
+					
+					</c:forEach>
 
-					<div class="timer">1시간 전</div>
+					<div class="timer">${avo.regdate }</div>
 
-					<div class="comment_field" id="add-comment-post37">
+					<!-- <div class="comment_field" id="add-comment-post37">
 						<input type="text" placeholder="댓글달기...">
 						<div class="upload_btn m_text" data-name="comment">게시</div>
-					</div>
+					</div> -->
 				</article>
 
 
@@ -102,18 +117,19 @@
 			<div class="user_profile">
 				<div class="profile_thumb">
 					<c:if test="${thumb eq null }">
-									<img src="/resources/f-instagram-master/imgs/default.jpg"
-										alt="착한호랑이">
+						<img src="/resources/f-instagram-master/imgs/default.jpg"
+							alt="착한호랑이">
 
-								</c:if>
-								<c:if test="${!(thumb eq null) }">
-									<img src="/uploads/${thumb }" alt="">
+					</c:if>
+					<c:if test="${!(thumb eq null) }">
+						<img src="/uploads/${thumb }" alt="">
 
-								</c:if>
+					</c:if>
 				</div>
 				<div class="detail">
-					<div class="id m_text "> 
-					 <a class="user_id" href="/user/profile/${login.nickname }">${login.email }</a> </div>
+					<div class="id m_text ">
+						<a class="user_id" href="/user/profile/${login.nickname }">${login.email }</a>
+					</div>
 					<div class="ko_name">${login.nickname }</div>
 				</div>
 			</div>
@@ -131,20 +147,39 @@
 						<img src="/resources/f-instagram-master/imgs/thumb02.jpg"
 							alt="프로필사진">
 					</div>
-					<div class="detail">
-						<div class="id">kind_tigerrrr</div>
-						<div class="time">1시간 전</div>
+					<div class="detail " >
+						<div class="id">kind_tigerrrr </div>
 					</div>
+					<div class="text-primary mr-3" style="position: absolute; right: 18px;">팔로우</div>
 				</div>
+				
 				<div class="thumb_user">
 					<div class="profile_thumb">
 						<img src="/resources/f-instagram-master/imgs/thumb02.jpg"
 							alt="프로필사진">
 					</div>
-					<div class="detail">
-						<div class="id">kind_tigerrrr</div>
-						<div class="time">1시간 전</div>
+					<div class="detail " >
+						<div class="id">kind_tigerrrr </div>
 					</div>
+					<div class="text-primary mr-3" style="position: absolute; right: 18px;">팔로우</div>
+				</div><div class="thumb_user">
+					<div class="profile_thumb">
+						<img src="/resources/f-instagram-master/imgs/thumb02.jpg"
+							alt="프로필사진">
+					</div>
+					<div class="detail " >
+						<div class="id">kind_tigerrrr </div>
+					</div>
+					<div class="text-primary mr-3" style="position: absolute; right: 18px;">팔로우</div>
+				</div><div class="thumb_user">
+					<div class="profile_thumb">
+						<img src="/resources/f-instagram-master/imgs/thumb02.jpg"
+							alt="프로필사진">
+					</div>
+					<div class="detail " >
+						<div class="id">kind_tigerrrr </div>
+					</div>
+					<div class="text-primary mr-3" style="position: absolute; right: 18px;">팔로우</div>
 				</div>
 			</article>
 		</div>

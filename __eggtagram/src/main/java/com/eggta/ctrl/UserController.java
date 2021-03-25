@@ -28,6 +28,7 @@ import com.eggta.domain.UserVO;
 import com.eggta.orm.FileProcessor;
 import com.eggta.service.ArticleService;
 import com.eggta.service.FileService;
+import com.eggta.service.FollowService;
 import com.eggta.service.UserService;
 
 @Controller
@@ -49,6 +50,8 @@ public class UserController {
 	private FileService fsv;
 	@Inject
 	private FileProcessor fp;
+	@Inject
+	private FollowService fosv;
 
 	@GetMapping("/signup")
 	public void signup() {
@@ -117,11 +120,15 @@ public class UserController {
 		} else {
 			profile = "";
 		}
+		List <String>follower_list  = fosv.getfollower(nickname);
+		List <String>target_list  = fosv.gettarget(nickname);
 		model.addAttribute("profile", profile);
 		model.addAttribute("a_list", list);
 		model.addAttribute("article_count", list.size());
-		model.addAttribute("belong_count", 0);// 팔로워
-		model.addAttribute("target_count", 0);
+		model.addAttribute("follower_count",follower_list.size() );// 팔로워
+		model.addAttribute("follower_list",follower_list);
+		model.addAttribute("target_count",target_list.size() );//타겟
+		
 
 		return "user/profile";
 	}
