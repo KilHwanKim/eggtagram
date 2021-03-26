@@ -13,7 +13,7 @@
 	<div class="inner">
 
 		<div class="contents_box">
-			<c:forEach items="${all_list }" var="avo">
+			<c:forEach items="${all_list }" var="avo" varStatus="sta">
 				<article class="contents">
 					<header class="top">
 						<div class="user_container">
@@ -45,12 +45,61 @@
 					</header>
 
 					<div class="img_section">
-						<div class="trans_inner">
-							<div>
-								<img
-									src="/resources/f-instagram-master/imgs/img_section/img01.jpg"
-									alt="visual01">
+						<div id="demo${sta.index }" class="carousel slide" data-ride="carousel" data-interval="false">
+
+							<!-- Indicators -->
+							<ul class="carousel-indicators">
+
+
+								<c:forEach items="${avo.file_list }" varStatus="status">
+
+									<c:if test="${status.first }">
+										<li data-target="#demo" data-slide-to="${status.current}"
+											class="active"></li>
+									</c:if>
+									<c:if test="${!status.first }">
+										<li data-target="#demo" data-slide-to="${status.current}"></li>
+
+									</c:if>
+
+
+								</c:forEach>
+							</ul>
+
+							<!-- The slideshow -->
+							<div class="carousel-inner">
+
+
+
+
+								<c:forEach items="${avo.file_list }" var="fvo" varStatus="status">
+
+									<c:if test="${status.first }">
+										<div class="carousel-item active">
+											<img
+												src="/uploads/${fvo.savedir }/${fvo.uuid }_${fvo.fname }"
+												alt="" height="380px" >
+										</div>
+									</c:if>
+									<c:if test="${!status.first }">
+										<div class="carousel-item">
+											<img
+												src="/uploads/${fvo.savedir }/${fvo.uuid }_${fvo.fname }"
+												alt=""  height="380px">
+										</div>
+									</c:if>
+
+								</c:forEach>
 							</div>
+
+
+
+							<!-- Left and right controls -->
+							<a class="carousel-control-prev" href="#demo${sta.index }" data-slide="prev">
+								<span class="carousel-control-prev-icon"></span>
+							</a> <a class="carousel-control-next" href="#demo${sta.index }" data-slide="next">
+								<span class="carousel-control-next-icon"></span>
+							</a>
 						</div>
 					</div>
 
