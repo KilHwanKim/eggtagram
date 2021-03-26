@@ -12,9 +12,10 @@ public interface FollowService {
 	public int add (FollowVO fvo);
 	public int cancle(FollowVO fvo);
 	public int check(FollowVO fvo);
-	public List<String> getfollower(String target);
-	public List<String> gettarget(String follower);
 	public List<UserVO> recommand(String nickname);
+	public List<FollowVO> getfollower(String target);
+	public List<FollowVO> gettarget(String follower);
+	
 	
 	
 	

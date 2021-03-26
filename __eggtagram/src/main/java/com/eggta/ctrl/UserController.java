@@ -24,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.eggta.domain.ArticleVO;
 import com.eggta.domain.FileVO;
+import com.eggta.domain.FollowVO;
 import com.eggta.domain.UserVO;
 import com.eggta.orm.FileProcessor;
 import com.eggta.service.ArticleService;
@@ -120,13 +121,14 @@ public class UserController {
 		} else {
 			profile = "";
 		}
-		List <String>follower_list  = fosv.getfollower(nickname);
-		List <String>target_list  = fosv.gettarget(nickname);
+		List <FollowVO>follower_list  = fosv.getfollower(nickname);
+		List <FollowVO>target_list  = fosv.gettarget(nickname);
 		model.addAttribute("profile", profile);
 		model.addAttribute("a_list", list);
 		model.addAttribute("article_count", list.size());
 		model.addAttribute("follower_count",follower_list.size() );// 팔로워
 		model.addAttribute("follower_list",follower_list);
+		model.addAttribute("target_list",target_list);
 		model.addAttribute("target_count",target_list.size() );//타겟
 		
 

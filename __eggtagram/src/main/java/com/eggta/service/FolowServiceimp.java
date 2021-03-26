@@ -42,13 +42,13 @@ public class FolowServiceimp implements FollowService{
 	}
 
 	@Override
-	public List<String> getfollower(String target) {
+	public List<FollowVO> getfollower(String target) {
 		// TODO Auto-generated method stub
 		return fdao.selectfollower(target);
 	}
 
 	@Override
-	public List<String> gettarget(String follower) {
+	public List<FollowVO> gettarget(String follower) {
 		// TODO Auto-generated method stub
 		return fdao.selecttarget(follower);
 	}

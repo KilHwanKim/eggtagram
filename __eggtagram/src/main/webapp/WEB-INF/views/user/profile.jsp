@@ -9,7 +9,7 @@
 <jsp:include page="../common/20_nav.jsp"></jsp:include>
 
 <link rel="stylesheet"
-	href="/resources/f-instagram-master/css/profile.css">
+	href="/resources/f-instagram-master/css/profile.css?ver=1">
 
 
 
@@ -55,15 +55,15 @@
 					<div class="top">
 						<div class="user_name">${uvo.nickname }
 							<c:if test="${!(uvo.nickname eq login.nickname) }">
-								
+
 								<c:forEach items="${follower_list }" var="nick">
-								 
+
 									<c:if test="${nick == login.nickname }">
-									
-										<c:set var="flag" value="1"/>
+
+										<c:set var="flag" value="1" />
 									</c:if>
 								</c:forEach>
-								
+
 
 								<c:if test="${(flag eq null) }">
 
@@ -86,9 +86,93 @@
 
 					<ul class="middle">
 						<li><span>게시물</span> ${article_count}</li>
-						<li><span>팔로워</span> ${follower_count}</li>
-						<li><span>팔로우</span> ${target_count}</li>
+						<li><span data-toggle="modal" data-target="#followModal">팔로워</span>
+							${follower_count}</li>
+						<li><span data-toggle="modal" data-target="#targetModal">팔로우</span>
+							${target_count}</li>
 					</ul>
+
+					<div class="modal" id="followModal">
+						<div class="modal-dialog modal-sm">
+							<div class="modal-content">
+
+								<!-- Modal Header -->
+								<div class="modal-header text-center">
+									<h4 class="modal-title font-weight-bold">팔로워</h4>
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+								</div>
+
+								<!-- Modal body -->
+								<div class="modal-body">
+									<div class="container scroll_section" >
+										
+											<c:forEach items="${follow_list }" var="fovo">
+												<div class="row">
+													<div class="col-sm-3">
+														<img src="/resources/f-instagram-master/imgs/thumb02.jpg"
+															alt="프로필사진" width="40px" height="40px"
+															class="rounded-circle">
+													</div>
+													<div class="col-sm-9 align-self-center">
+														<a class="user_id" href="/user/profile/${fovo.follow }">${fovo.follow }</a>
+													</div>
+
+												</div>
+											</c:forEach>
+										
+									</div>
+
+								</div>
+								<!-- Modal footer -->
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger"
+										data-dismiss="modal">Close</button>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="modal" id="targetModal">
+						<div class="modal-dialog modal-sm">
+							<div class="modal-content">
+
+								<!-- Modal Header -->
+								<div class="modal-header text-center">
+									<h4 class="modal-title font-weight-bold">팔로우</h4>
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+								</div>
+
+								<!-- Modal body -->
+								<div class="modal-body">
+									<div class="container scroll_section" >
+										
+											<c:forEach items="${target_list }" var="fovo">
+												<div class="row">
+													<div class="col-sm-3">
+														<img src="/resources/f-instagram-master/imgs/thumb02.jpg"
+															alt="프로필사진" width="40px" height="40px"
+															class="rounded-circle">
+													</div>
+													<div class="col-sm-9 align-self-center">
+														<a class="user_id" href="/user/profile/${fovo.target }">${fovo.target }</a>
+													</div>
+
+												</div>
+											</c:forEach>
+										
+									</div>
+
+								</div>
+								<!-- Modal footer -->
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger"
+										data-dismiss="modal">Close</button>
+								</div>
+
+							</div>
+						</div>
+					</div>
 
 					<h1></h1>
 					<p class="about">${uvo.usercomment }</p>

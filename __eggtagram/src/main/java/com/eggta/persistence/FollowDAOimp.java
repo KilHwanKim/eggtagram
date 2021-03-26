@@ -42,13 +42,13 @@ public class FollowDAOimp implements FollowDAO{
 	}
 
 	@Override
-	public List<String> selectfollower(String target) {
+	public List<FollowVO> selectfollower(String target) {
 		// TODO Auto-generated method stub
 		return sql.selectList(NAME_SPACE+"follower",target);
 	}
 
 	@Override
-	public List<String> selecttarget(String follower) {
+	public List<FollowVO> selecttarget(String follower) {
 		// TODO Auto-generated method stub
 		return sql.selectList(NAME_SPACE+"target",follower);
 	}
