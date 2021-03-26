@@ -53,8 +53,8 @@
 
 				<div class="right_icons">
 					<a href="/article/register"><div class="sprite_camera_icon"></div></a>
-					<a href="login.html"><div class="sprite_compass_icon"></div></a> <a
-						href="follow.html"><div class="sprite_heart_icon_outline"></div></a>
+					<a href="#"><div class="sprite_compass_icon"></div></a> <a
+						href="#"><div class="sprite_heart_icon_outline"></div></a>
 
 					<div class="sprite_user_icon_outline dropdown">
 

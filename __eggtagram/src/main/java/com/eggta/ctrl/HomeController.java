@@ -76,8 +76,17 @@ public class HomeController {
 			model.addAttribute("thumb", my_thumb);
 
 		}
+		List<UserVO> recommand_list = fosv.recommand(uvo.getNickname());
+		for (UserVO uuvo : recommand_list) {
+			FileVO uuvo_fvo = fsv.getFile(uuvo.getNickname());
+			if(uuvo_fvo != null) {
+			String my_th = uuvo_fvo.getSavedir() + "\\" + uuvo_fvo.getUuid() + "_th_" + uuvo_fvo.getFname();
+			uuvo.setThumb(my_th);}
+			
+		}
 		
-		model.addAttribute("recommand_list",fosv.recommand(uvo.getNickname()));
+		
+		model.addAttribute("recommand_list",recommand_list);
 		
 		
 		

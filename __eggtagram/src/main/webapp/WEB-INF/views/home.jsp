@@ -39,7 +39,7 @@
 
 						<div class="sprite_more_icon" data-name="more">
 							<ul class="toggle_box">
-								
+
 							</ul>
 						</div>
 					</header>
@@ -57,8 +57,7 @@
 					<div class="bottom_icons">
 						<div class="left_icons">
 							<div class="heart_btn">
-								<div class="sprite_heart_icon_outline" 
-									data-name="heartbeat"></div>
+								<div class="sprite_heart_icon_outline" data-name="heartbeat"></div>
 							</div>
 							<a href="/article/detail/${avo.ano }"><div
 									class="sprite_bubble_icon"></div> </a>
@@ -140,20 +139,32 @@
 					<div class="more">모두 보기</div>
 				</header>
 				<c:forEach items="${recommand_list}" var="uvo">
-				<div class="thumb_user">
-					<div class="profile_thumb">
-						<img src="/resources/f-instagram-master/imgs/thumb02.jpg"
-							alt="프로필사진">
+					<div class="thumb_user">
+						<div class="profile_thumb">
+
+							<c:if test="${!(uvo.thumb eq null) }">
+
+								<img src="/uploads/${uvo.thumb }" alt="">
+							</c:if>
+
+							<c:if test="${uvo.thumb eq null }">
+
+								<img src="/resources/f-instagram-master/imgs/default.jpg"
+									alt="착한호랑이">
+							</c:if>
+
+						</div>
+						<div class="detail ">
+							<div class="id">
+								<a class="user_id" href="/user/profile/${uvo.nickname }">${uvo.nickname }</a>
+							</div>
+						</div>
+						<div class="text-primary mr-3 FAL"
+							style="position: absolute; right: 18px;"
+							data-target="${uvo.nickname }" data-follower="${login.nickname }">팔로우</div>
 					</div>
-					<div class="detail ">
-						<div class="id"> <a class="user_id" href="/user/profile/${uvo.nickname }">${uvo.nickname }</a> </div>
-					</div>
-					<div class="text-primary mr-3 FAL"
-						style="position: absolute; right: 18px;" data-target="${uvo.nickname }"
-										data-follower="${login.nickname }">팔로우</div>
-				</div>
 				</c:forEach>
-				
+
 			</article>
 		</div>
 
@@ -173,8 +184,7 @@
 
 				$(this).removeClass("text-primary");
 				$(this).text("팔로우 취소");
-				
-				
+
 				$.ajax({
 					url : "/follow/add",
 					type : "post",
@@ -182,7 +192,7 @@
 						target : targetVal,
 						follower : followerVal
 					}
-				
+
 				});
 
 			} else {
@@ -196,7 +206,7 @@
 						target : targetVal,
 						follower : followerVal
 					}
-				
+
 				});
 			}
 

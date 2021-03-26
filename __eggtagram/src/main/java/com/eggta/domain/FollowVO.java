@@ -5,6 +5,13 @@ public class FollowVO {
 	int fno;
 	String follower;
 	String target;
+	String thumb;
+	public String getThumb() {
+		return thumb;
+	}
+	public void setThumb(String thumb) {
+		this.thumb = thumb;
+	}
 	public int getFno() {
 		return fno;
 	}

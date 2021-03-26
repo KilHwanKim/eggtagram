@@ -22,5 +22,5 @@
 <link rel="stylesheet"
 	href="/resources/f-instagram-master/css/style.css?ver=2">
 <link rel="shortcut icon"
-	href="/resources/f-instagram-masterimgs/instagram.png">
+	href="/resources/f-instagram-master/imgs/instagram.png">
 </head>

@@ -8,6 +8,13 @@ public class UserVO {
 	String pwd;
 	String usercomment;
 	int ismen;
+	String thumb;
+	public String getThumb() {
+		return thumb;
+	}
+	public void setThumb(String thumb) {
+		this.thumb = thumb;
+	}
 	public String getEmail() {
 		return email;
 	}
