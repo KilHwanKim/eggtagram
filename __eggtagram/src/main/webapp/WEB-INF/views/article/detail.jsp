@@ -180,17 +180,18 @@
 										class="user_id">${cvo.nickname }</span></a> ${cvo.content }
 									<div class="time">${cvo.regdate }</div>
 									<div class="icon_wrap">
-										<div class="more_trigger" data-cno="${cvo.cno }"
-											data-ano="${avo.ano }">
+										<c:if test="${cvo.nickname eq login.nickname }">
+											<div class="more_trigger" data-cno="${cvo.cno }"
+												data-ano="${avo.ano }">
 
 
-											<div>x</div>
+												<div>x</div>
 
 
 
 
-										</div>
-
+											</div>
+										</c:if>
 										<div class="small_heart_btn">
 											<div class="sprite_small_heart_icon_outline"></div>
 										</div>

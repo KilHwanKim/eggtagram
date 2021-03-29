@@ -106,7 +106,7 @@
 								<div class="modal-body">
 									<div class="container scroll_section" >
 										
-											<c:forEach items="${follow_list }" var="fovo">
+											<c:forEach items="${follower_list }" var="fovo">
 												<div class="row">
 													<div class="col-sm-3">
 														<img src="/resources/f-instagram-master/imgs/thumb02.jpg"
@@ -114,7 +114,7 @@
 															class="rounded-circle">
 													</div>
 													<div class="col-sm-9 align-self-center">
-														<a class="user_id" href="/user/profile/${fovo.follow }">${fovo.follow }</a>
+														<a class="user_id" href="/user/profile/${fovo.follower }">${fovo.follower }</a>
 													</div>
 
 												</div>
