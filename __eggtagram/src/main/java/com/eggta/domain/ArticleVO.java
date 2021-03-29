@@ -11,8 +11,15 @@ public class ArticleVO {
 	List <FileVO> file_list;
 	List <CommentVO> comment_list;
 	int like_check; 
+	int like_count;
 	
 	
+	public int getLike_count() {
+		return like_count;
+	}
+	public void setLike_count(int like_count) {
+		this.like_count = like_count;
+	}
 	public int getLike_check() {
 		return like_check;
 	}

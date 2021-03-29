@@ -227,7 +227,7 @@
 					</div>
 
 					<div class="count_likes">
-						좋아요 <span id="count${avo.ano }"></span> 개
+						좋아요 <span id="count${avo.ano }">${like_count }</span> 개
 					</div>
 					<div class="timer">${avo.regdate }</div>
 

@@ -123,7 +123,7 @@
 					</div>
 
 					<div class="likes m_text">
-						좋아요 <span id="count${avo.ano }"></span>  개
+						좋아요 <span id="count${avo.ano }"> ${avo.like_count }</span>  개
 					</div>
 					<div class="comment_container">
 

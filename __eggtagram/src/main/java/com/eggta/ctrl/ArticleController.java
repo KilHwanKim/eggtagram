@@ -96,6 +96,7 @@ public class ArticleController {
 		logger.info("길이 : " + filelist.size());
 		model.addAttribute("f_list", filelist);
 		model.addAttribute("f_size", filelist.size() - 1);
+		
 		List<CommentVO> c_list = csv.getList(ano);
 		for (CommentVO cvo : c_list) {
 			if (fsv.getFile(cvo.getNickname()) != null) {
@@ -118,7 +119,7 @@ public class ArticleController {
 		lvo.setNickname(asv.getDetail(ano).getNickname());
 		logger.info("detail nick"+asv.getDetail(ano).getNickname());
 		model.addAttribute("like_check",lsv.ckeck(lvo));
-
+		model.addAttribute("like_count",lsv.count(ano));
 		return "article/detail";
 	}
 	

@@ -67,6 +67,8 @@ public class HomeController {
 			lvo.setAno(avo.getAno());
 			lvo.setNickname(avo.getNickname());
 			avo.setLike_check(lsv.ckeck(lvo));
+			avo.setLike_count(lsv.count(avo.getAno()));
+		
 			
 		}
 		model.addAttribute("all_list",article_list);
