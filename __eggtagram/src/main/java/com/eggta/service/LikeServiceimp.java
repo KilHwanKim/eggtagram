@@ -40,5 +40,11 @@ public class LikeServiceimp implements LikeService{
 		return ldao.selectcheck(lvo);
 	}
 
+	@Override
+	public Integer count(Integer ano) {
+		// TODO Auto-generated method stub
+		return ldao.selectcount(ano);
+	}
+
 	
 }

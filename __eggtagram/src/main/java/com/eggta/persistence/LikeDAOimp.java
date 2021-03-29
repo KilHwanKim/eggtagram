@@ -41,5 +41,11 @@ public class LikeDAOimp implements LikeDAO{
 		return sql.selectOne(NAME_SPACE+"check",lvo);
 	}
 
+	@Override
+	public Integer selectcount(Integer ano) {
+		// TODO Auto-generated method stub
+		return sql.selectOne(NAME_SPACE+"count",ano);
+	}
+
 
 }

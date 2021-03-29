@@ -10,8 +10,15 @@ public class ArticleVO {
 	String thumb;
 	List <FileVO> file_list;
 	List <CommentVO> comment_list;
+	int like_check; 
 	
 	
+	public int getLike_check() {
+		return like_check;
+	}
+	public void setLike_check(int like_check) {
+		this.like_check = like_check;
+	}
 	public List<FileVO> getFile_list() {
 		return file_list;
 	}

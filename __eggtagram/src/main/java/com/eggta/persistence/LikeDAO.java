@@ -9,5 +9,5 @@ public interface LikeDAO  {
 	int delete(LikeVO lvo);
 	List<LikeVO> selectList(String nickname);
 	int selectcheck(LikeVO lvo);
-
+	Integer selectcount(Integer ano);
 }

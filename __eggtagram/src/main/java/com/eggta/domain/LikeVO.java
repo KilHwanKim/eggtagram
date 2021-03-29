@@ -4,7 +4,7 @@ package com.eggta.domain;
 
 public class LikeVO {
 	Integer ano;
-	Integer cno;
+	
 	String nickname;
 	
 	public Integer getAno() {
@@ -13,12 +13,7 @@ public class LikeVO {
 	public void setAno(Integer ano) {
 		this.ano = ano;
 	}
-	public Integer getCno() {
-		return cno;
-	}
-	public void setCno(Integer cno) {
-		this.cno = cno;
-	}
+	
 	public String getNickname() {
 		return nickname;
 	}

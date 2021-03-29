@@ -12,5 +12,5 @@ public interface LikeService {
 	int cancle(LikeVO lvo);
 	List <LikeVO> getList(String NickName);
 	int ckeck(LikeVO lvo);
-
+	Integer count(Integer ano);
 }

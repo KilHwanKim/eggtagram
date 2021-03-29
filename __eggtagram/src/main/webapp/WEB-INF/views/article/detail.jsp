@@ -227,7 +227,7 @@
 					</div>
 
 					<div class="count_likes">
-						좋아요 <span class="count">2,351</span> 개
+						좋아요 <span id="count${avo.ano }"></span> 개
 					</div>
 					<div class="timer">${avo.regdate }</div>
 
@@ -273,6 +273,7 @@
 		$(document).on("click", ".heart_btn", function(e) {
 			let anoval = $("#ano").val();
 			let nicknameval = $("#nickname").val();
+			
 
 			if ($(this).children('div').hasClass("on") === true) {
 
@@ -304,6 +305,20 @@
 				});
 
 			}
+			
+			
+			$.ajax({
+				url: "/like/count",
+				type: "post",
+				data:{
+					ano : anoval
+				}
+			}).done(function(e){
+				console.log(e);
+				$("#count"+anoval).text(e);
+				
+				
+			});
 
 		});
 		/* 댓글 좋아요 삭제 */

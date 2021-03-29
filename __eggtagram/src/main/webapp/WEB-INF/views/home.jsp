@@ -107,8 +107,11 @@
 
 					<div class="bottom_icons">
 						<div class="left_icons">
-							<div class="heart_btn">
-								<div class="sprite_heart_icon_outline" data-name="heartbeat" data-ano="${avo.ano }" data-nickname="${avo.nickname }"> </div>
+							<div class="heart_btn" data-ano="${avo.ano }"
+									data-nickname="${avo.nickname }">
+								<div
+									class="sprite_heart_icon_outline  <c:if test="${avo.like_check ne 0 }"> on</c:if> "
+									data-name="heartbeat" ></div>
 							</div>
 							<a href="/article/detail/${avo.ano }"><div
 									class="sprite_bubble_icon"></div> </a>
@@ -120,8 +123,7 @@
 					</div>
 
 					<div class="likes m_text">
-						좋아요 <span id="like-count-39">2,346</span> <span
-							id="bookmark-count-39"></span> 개
+						좋아요 <span id="count${avo.ano }"></span>  개
 					</div>
 					<div class="comment_container">
 
@@ -261,10 +263,12 @@
 				});
 			}
 
-		})
-		$(document).on("click", ".heart_btn", function(e) {
+		});
+		$(document).on("click", ".heart_btn", function() {
+			
 			let anoval = $(this).data("ano");
 			let nicknameval = $(this).data("nickname");
+			
 
 			if ($(this).children('div').hasClass("on") === true) {
 
@@ -293,8 +297,18 @@
 
 				});
 
-			}
+			};
+			$.ajax({
+				url : "/like/count",
+				type : "post",
+				data : {
+					ano : anoval
+				}
+			}).done(function(e) {
+				
+				$("#count" + anoval).text(e);
 
+			});
 		});
 
 	});

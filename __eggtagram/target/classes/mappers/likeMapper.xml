@@ -8,6 +8,10 @@ select count(nickname) from tbl_like where nickname = #{nickname} and ano = #{an
 
 </select>
 
+<select id="count" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+select count(nickname) from tbl_like where ano = #{ano}
+
+</select>
 
 <insert id="up" parameterType="lvo">
 insert into tbl_like(nickname,ano)values(#{nickname},#{ano}) 

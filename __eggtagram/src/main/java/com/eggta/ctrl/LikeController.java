@@ -25,31 +25,40 @@ public class LikeController {
 	@Inject
 	private LikeService lsv;
 
-	
+	@ResponseBody
 	@PostMapping("/add")
-	public String add(LikeVO lvo,@RequestParam("nickname") String nickname ,@RequestParam("ano") Integer ano ) {
+	public void add(LikeVO lvo,@RequestParam("nickname") String nickname ,@RequestParam("ano") Integer ano ) {
 		lvo.setAno(ano);
 		lvo.setNickname(nickname);
 
 		lsv.up(lvo);
 		
 		
-		return "";
+		
 	}
 	
 	
-	
+	@ResponseBody
 	@PostMapping("/cancle")
-	public String cancle(LikeVO lvo,@RequestParam("nickname") String nickname ,@RequestParam("ano") Integer ano ) {
+	public void cancle(LikeVO lvo,@RequestParam("nickname") String nickname ,@RequestParam("ano") Integer ano ) {
 		lvo.setAno(ano);
 		lvo.setNickname(nickname);
 
 		lsv.cancle(lvo);
 		
 		
-		return "";
+		
 	}
 	
+	@ResponseBody
+	@PostMapping("/count")
+	public String count(@RequestParam("ano") Integer ano) {
+		logger.info("좋아요 갯수"+lsv.count(ano));
+		
+		
+		return lsv.count(ano).toString();
+		
+	}
 	
 
 	
