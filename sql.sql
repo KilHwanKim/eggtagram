@@ -9,9 +9,10 @@ drop table if exists tbl_follow ;
 drop table if exists tbl_file ;
 drop table if exists tbl_article ;
 drop table if exists tbl_user;
+
 create table tbl_user(
-email varchar(1000) not null,
-nickname varchar(100) not null primary key,
+email varchar(1000) not null primary key,
+nickname varchar(100) not null unique,
 pwd varchar(1000) not null,
 usercomment varchar(1000) default "Hello!",
 ismen tinyint(1) default 1
@@ -27,7 +28,7 @@ content varchar(1000),
 regdate timestamp default now()
 );
 alter table tbl_article add foreign key (nickname) references tbl_user(nickname) on delete cascade;
-alter table tbl_comment add foreign key (nickname) references tbl_user(nickname) on update cascade;
+alter table tbl_article add foreign key (nickname) references tbl_user(nickname) on update cascade;
 
 
 
@@ -44,10 +45,11 @@ alter table tbl_follow add foreign key (target) references tbl_user(nickname) on
 
 create table tbl_like(
 ano int(255),
-cno int(255),
 nickname varchar(100)
 );
-alter table tbl_like add foreign key (ano) references tbl_article(ano) on  cascade;
+alter table tbl_like add foreign key (ano) references tbl_article(ano) on delete cascade;
+alter table tbl_like add foreign key (ano) references tbl_article(ano) on update cascade;
+
 alter table tbl_like add foreign key (nickname) references tbl_user(nickname) on delete cascade;
 alter table tbl_like add foreign key (nickname) references tbl_user(nickname) on update cascade;
 
