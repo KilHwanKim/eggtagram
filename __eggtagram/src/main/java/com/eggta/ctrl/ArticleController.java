@@ -32,10 +32,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.eggta.domain.ArticleVO;
 import com.eggta.domain.CommentVO;
 import com.eggta.domain.FileVO;
+import com.eggta.domain.LikeVO;
 import com.eggta.orm.FileProcessor;
 import com.eggta.service.ArticleService;
 import com.eggta.service.CommentService;
 import com.eggta.service.FileService;
+import com.eggta.service.LikeService;
 import com.eggta.service.UserService;
 
 /**
@@ -60,6 +62,8 @@ public class ArticleController {
 
 	@Inject
 	private CommentService csv;
+	@Inject
+	private LikeService lsv;
 
 	private static final Logger logger = LoggerFactory.getLogger(ArticleController.class);
 
@@ -86,7 +90,7 @@ public class ArticleController {
 	}
 
 	@GetMapping("/detail/{ano}")
-	public String detail(Model model, @PathVariable Integer ano) {
+	public String detail(Model model, @PathVariable Integer ano,LikeVO lvo) {
 		model.addAttribute("avo", asv.getDetail(ano));
 		List<FileVO> filelist = fsv.getFile(ano);
 		logger.info("길이 : " + filelist.size());
@@ -110,6 +114,10 @@ public class ArticleController {
 
 		}
 		model.addAttribute("c_list", c_list);
+		lvo.setAno(ano);
+		lvo.setNickname(asv.getDetail(ano).getNickname());
+		logger.info("detail nick"+asv.getDetail(ano).getNickname());
+		model.addAttribute("like_check",lsv.ckeck(lvo));
 
 		return "article/detail";
 	}

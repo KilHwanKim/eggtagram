@@ -45,7 +45,8 @@
 					</header>
 
 					<div class="img_section">
-						<div id="demo${sta.index }" class="carousel slide" data-ride="carousel" data-interval="false">
+						<div id="demo${sta.index }" class="carousel slide"
+							data-ride="carousel" data-interval="false">
 
 							<!-- Indicators -->
 							<ul class="carousel-indicators">
@@ -72,20 +73,21 @@
 
 
 
-								<c:forEach items="${avo.file_list }" var="fvo" varStatus="status">
+								<c:forEach items="${avo.file_list }" var="fvo"
+									varStatus="status">
 
 									<c:if test="${status.first }">
 										<div class="carousel-item active">
 											<img
 												src="/uploads/${fvo.savedir }/${fvo.uuid }_${fvo.fname }"
-												alt="" height="380px" >
+												alt="" height="380px">
 										</div>
 									</c:if>
 									<c:if test="${!status.first }">
 										<div class="carousel-item">
 											<img
 												src="/uploads/${fvo.savedir }/${fvo.uuid }_${fvo.fname }"
-												alt=""  height="380px">
+												alt="" height="380px">
 										</div>
 									</c:if>
 
@@ -95,10 +97,10 @@
 
 
 							<!-- Left and right controls -->
-							<a class="carousel-control-prev" href="#demo${sta.index }" data-slide="prev">
-								<span class="carousel-control-prev-icon"></span>
-							</a> <a class="carousel-control-next" href="#demo${sta.index }" data-slide="next">
-								<span class="carousel-control-next-icon"></span>
+							<a class="carousel-control-prev" href="#demo${sta.index }"
+								data-slide="prev"> <span class="carousel-control-prev-icon"></span>
+							</a> <a class="carousel-control-next" href="#demo${sta.index }"
+								data-slide="next"> <span class="carousel-control-next-icon"></span>
 							</a>
 						</div>
 					</div>
@@ -106,7 +108,7 @@
 					<div class="bottom_icons">
 						<div class="left_icons">
 							<div class="heart_btn">
-								<div class="sprite_heart_icon_outline" data-name="heartbeat"></div>
+								<div class="sprite_heart_icon_outline" data-name="heartbeat" data-ano="${avo.ano }" data-nickname="${avo.nickname }"> </div>
 							</div>
 							<a href="/article/detail/${avo.ano }"><div
 									class="sprite_bubble_icon"></div> </a>
@@ -260,6 +262,40 @@
 			}
 
 		})
+		$(document).on("click", ".heart_btn", function(e) {
+			let anoval = $(this).data("ano");
+			let nicknameval = $(this).data("nickname");
+
+			if ($(this).children('div').hasClass("on") === true) {
+
+				$(this).children('div').removeClass("on");
+				$.ajax({
+					url : "/like/cancle",
+					type : "post",
+					data : {
+						ano : anoval,
+						nickname : nicknameval
+
+					}
+
+				});
+
+			} else {
+				$(this).children('div').addClass("on");
+				$.ajax({
+					url : "/like/add",
+					type : "post",
+					data : {
+						ano : anoval,
+						nickname : nicknameval
+
+					}
+
+				});
+
+			}
+
+		});
 
 	});
 </script>

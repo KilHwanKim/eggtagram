@@ -34,5 +34,11 @@ public class LikeServiceimp implements LikeService{
 		return null;
 	}
 
+	@Override
+	public int ckeck(LikeVO lvo) {
+		// TODO Auto-generated method stub
+		return ldao.selectcheck(lvo);
+	}
+
 	
 }

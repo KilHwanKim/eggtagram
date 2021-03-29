@@ -35,5 +35,11 @@ public class LikeDAOimp implements LikeDAO{
 		return null;
 	}
 
+	@Override
+	public int selectcheck(LikeVO lvo) {
+		// TODO Auto-generated method stub
+		return sql.selectOne(NAME_SPACE+"check",lvo);
+	}
+
 
 }

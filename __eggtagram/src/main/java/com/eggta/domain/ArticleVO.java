@@ -10,13 +10,8 @@ public class ArticleVO {
 	String thumb;
 	List <FileVO> file_list;
 	List <CommentVO> comment_list;
-	List<LikeVO> like_list;
-	public List<LikeVO> getLike_list() {
-		return like_list;
-	}
-	public void setLike_list(List<LikeVO> like_list) {
-		this.like_list = like_list;
-	}
+	
+	
 	public List<FileVO> getFile_list() {
 		return file_list;
 	}

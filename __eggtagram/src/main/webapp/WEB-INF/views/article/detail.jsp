@@ -192,7 +192,7 @@
 
 											</div>
 										</c:if>
-										<div class="small_heart_btn">
+										<div class="small_heart_btn  ">
 											<div class="sprite_small_heart_icon_outline"></div>
 										</div>
 									</div>
@@ -211,7 +211,7 @@
 					<div class="bottom_icons">
 						<div class="left_icons">
 							<div class="heart_btn">
-								<div class="sprite_heart_icon_outline" data-name="heartbeat"></div>
+								<div class="sprite_heart_icon_outline <c:if test="${like_check ne 0 }"> on</c:if>" data-name="heartbeat"></div>
 							</div>
 							<div>
 								<div class="sprite_bubble_icon"></div>
