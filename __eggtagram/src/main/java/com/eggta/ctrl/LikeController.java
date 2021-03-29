@@ -24,26 +24,32 @@ public class LikeController {
 
 	@Inject
 	private LikeService lsv;
-	@ResponseBody
-	@PostMapping("/content")
-	public String contnet (@RequestParam("nickname") String nickname,@RequestParam("ano") int ano ,@RequestParam("sign") String sign) {
-		LikeVO lvo = new LikeVO();
-		logger.info("Post Mapping /content");
-		lvo.setNickname(nickname);
+
+	
+	@PostMapping("/add")
+	public String add(LikeVO lvo,@RequestParam("nickname") String nickname ,@RequestParam("ano") Integer ano ) {
 		lvo.setAno(ano);
-		logger.info("sign>>>> "+sign);
-		if (sign.equals("up") ) {
-			int isUP = lsv.up(lvo) ;
-			logger.info("isUP"+isUP);
-		}
-		else {
-			lsv.cancle(lvo);
-		}
+		lvo.setNickname(nickname);
+
+		lsv.up(lvo);
 		
 		
 		return "";
-		
 	}
+	
+	
+	
+	@PostMapping("/cancle")
+	public String cancle(LikeVO lvo,@RequestParam("nickname") String nickname ,@RequestParam("ano") Integer ano ) {
+		lvo.setAno(ano);
+		lvo.setNickname(nickname);
+
+		lsv.cancle(lvo);
+		
+		
+		return "";
+	}
+	
 	
 
 	

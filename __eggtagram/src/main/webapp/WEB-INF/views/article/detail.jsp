@@ -277,19 +277,43 @@
 			if ($(this).children('div').hasClass("on") === true) {
 
 				$(this).children('div').removeClass("on");
+				$.ajax({
+					url :"/like/cancle",
+					type: "post",
+					data : {
+						ano : anoval,
+						nickname : nicknameval
+						
+					}
+					
+					
+				});
+				
 			} else {
 				$(this).children('div').addClass("on");
+				$.ajax({
+					url :"/like/add",
+					type: "post",
+					data : {
+						ano : anoval,
+						nickname : nicknameval
+						
+					}
+					
+					
+				});
 
 			}
 
 		});
-		$(document).on("click", ".small_heart_btn", function() {
+		/* 댓글 좋아요 삭제 */
+		/* $(document).on("click", ".small_heart_btn", function() {
 			if ($(this).children('div').hasClass("on") === true) {
 				$(this).children('div').removeClass("on");
 			} else {
 				$(this).children('div').addClass("on");
 			}
-		});
+		}); */
 
 		$(document).on("click", ".more_trigger", function() {
 			let select = $(this);
