@@ -7,5 +7,5 @@
 
 
 
-![테이블 ERD  ](img/ERD.png)
+![테이블 ERD  ](img/ERD.jpeg)
 -----------
