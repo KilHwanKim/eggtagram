@@ -37,11 +37,7 @@
 
 						</div>
 
-						<div class="sprite_more_icon" data-name="more">
-							<ul class="toggle_box">
-
-							</ul>
-						</div>
+						
 					</header>
 
 					<div class="img_section">
@@ -115,11 +111,9 @@
 							</div>
 							<a href="/article/detail/${avo.ano }"><div
 									class="sprite_bubble_icon"></div> </a>
-							<div class="sprite_share_icon" data-name="share"></div>
+							<div class="sprite_share_icon" data-toggle="modal" data-target="#unem"></div>
 						</div>
-						<div class="right_icon">
-							<div class="sprite_bookmark_outline" data-name="bookmark"></div>
-						</div>
+						
 					</div>
 
 					<div class="likes m_text">
@@ -189,7 +183,7 @@
 			<article class="recommend">
 				<header class="reco_header">
 					<div>회원님을 위한 추천</div>
-					<div class="more">모두 보기</div>
+					
 				</header>
 				<c:forEach items="${recommand_list}" var="uvo">
 					<div class="thumb_user">
