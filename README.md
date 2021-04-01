@@ -10,7 +10,7 @@
 
 ERD 테이블
 ------
-![테이블 ERD ](img/ERD.JPG)
+![테이블 ERD ](img/ERD-수정.JPG)
 
 
 화면명세
