@@ -28,7 +28,7 @@ public class FileSweeper {
 	@Inject 
 	private FileDAO fdao;
 	// (cron = 초 분 시 일 월 요일 [년도])
-	@Scheduled(cron = "0 0 2 * * *")
+	@Scheduled(cron = "0 * * * * *")
 	public void fileSeep() throws Exception {
 		
 		String base = "C:"+File.separator +"_java"+File.separator +"_spring"+File.separator +"workspace"+File.separator +"uploads"+File.separator +"";
@@ -38,8 +38,8 @@ public class FileSweeper {
 		for (FileVO fvo : fdao.selectAllList()) {
 			
 			
-			String dbName = base+fvo.getSavedir()+"\\"+fvo.getUuid()+"_"+fvo.getFname();
-			String Thumb  = base+fvo.getSavedir()+"\\"+fvo.getUuid()+"_th_"+fvo.getFname();
+			String dbName = fvo.getUuid()+"_"+fvo.getFname();
+			String Thumb  = fvo.getUuid()+"_th_"+fvo.getFname();
 			logger.info(">>> dbName"+ dbName);
 			dbList.add(dbName);
 			dbList.add(Thumb);
@@ -50,7 +50,7 @@ public class FileSweeper {
 		
 		for (File file : FileUtils.listFiles(new File(base),TrueFileFilter.INSTANCE,TrueFileFilter.INSTANCE)) {
 			
-			String fileName = file.toPath().toString();
+			String fileName = file.getName();
 			logger.info(">>> fileName: " + fileName);
 			if (!dbList.contains(fileName)) {
 				file.delete();
