@@ -175,7 +175,7 @@
 					</div>
 
 					<h1></h1>
-					<p class="about">${uvo.usercomment }</p>
+					<pre class="about">${uvo.usercomment }</pre>
 
 				</div>
 			</div>

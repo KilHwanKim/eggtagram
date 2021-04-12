@@ -31,7 +31,7 @@ public class FileSweeper {
 	@Scheduled(cron = "0 0 2 * * *")
 	public void fileSeep() throws Exception {
 		
-		String base = "C:\\_java\\_spring\\workspace\\uploads\\";
+		String base = "C:"+File.separator +"_java"+File.separator +"_spring"+File.separator +"workspace"+File.separator +"uploads"+File.separator +"";
 		File target_dir = Paths.get(base).toFile();
 		ArrayList <String> dbList = new ArrayList();
 		
