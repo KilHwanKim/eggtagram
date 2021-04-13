@@ -66,4 +66,11 @@ public class UserServiceimp implements UserService{
 		return null;
 	}
 
+
+	@Override
+	public List<UserVO> getAuto(String search) {
+		// TODO Auto-generated method stub
+		return udao.selectAuto(search);
+	}
+
 }

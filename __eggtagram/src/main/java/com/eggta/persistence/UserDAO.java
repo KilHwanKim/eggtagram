@@ -13,6 +13,7 @@ public interface UserDAO {
 	public int insert(UserVO uvo);
 	public int update(UserVO uvo);
 	public int delete(String nickname);
+	public List <UserVO> selectAuto (String search);
 	
 	
 	

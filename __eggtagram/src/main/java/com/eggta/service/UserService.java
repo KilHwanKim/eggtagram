@@ -16,6 +16,7 @@ public interface UserService {
 	public int resign(String nickname);//
 	public int checkNick(String nickname);
 	public int checkEmail(String email);
+	public List <UserVO> getAuto(String search); //자동완성 
 	
 
 }

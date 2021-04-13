@@ -228,5 +228,14 @@ public class UserController {
 		int isExist = usv.checkEmail(email);
 		return isExist == 1 ? "1" : "0";
 	}
+	
+	
+	@ResponseBody
+	@PostMapping("/search")
+	public List<UserVO> search(@RequestParam("search") String search){
+		
+		return usv.getAuto(search);
+		
+	}
 
 }

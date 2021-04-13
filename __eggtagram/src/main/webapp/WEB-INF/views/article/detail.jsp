@@ -221,9 +221,7 @@
 							</div>
 						</div>
 
-						<div class="right_icon">
-							<div class="sprite_bookmark_outline" data-name="book-mark"></div>
-						</div>
+						
 					</div>
 
 					<div class="count_likes">

@@ -61,6 +61,12 @@ public class UserDAOimp implements UserDAO{
 		return sql.selectOne(NAME_SPACE+"nick", email);
 	}
 
+	@Override
+	public List<UserVO> selectAuto(String search) {
+		// TODO Auto-generated method stub
+		return sql.selectList(NAME_SPACE+"auto",search);
+	}
+
 	
 
 

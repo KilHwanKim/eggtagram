@@ -26,6 +26,14 @@
 .list-group-item:hover {
 	background: #eeeeee;
 }
+
+#search {
+	display: block;
+	position: absolute;
+	z-index: 10;
+	border-radius: 4px;
+	top: 50px;
+}
 </style>
 
 <body>
@@ -43,18 +51,24 @@
 				</h1>
 
 				<div class="search_field">
-					<input type="text" placeholder="검색" tabindex="0">
-
+					<input type="text" placeholder="검색" tabindex="0" id="search_input">
+					<div class="list-group" id="search">
+						<a href="#" class="list-group-item list-group-item-action">First
+							item</a> <a href="#" class="list-group-item list-group-item-action">Second
+							item</a> <a href="#" class="list-group-item list-group-item-action">Third
+							item</a>
+					</div>
 					<div class="fake_field">
 						<span class=sprite_small_search_icon></span> <span>검색</span>
+
 					</div>
 				</div>
 
 
 				<div class="right_icons">
 					<a href="/article/register"><div class="sprite_camera_icon"></div></a>
-					<a  data-toggle="modal" data-target="#unem"><div class="sprite_compass_icon"></div></a> <a
-						 data-toggle="modal" data-target="#unem"><div class="sprite_heart_icon_outline"></div></a>
+					<a data-toggle="modal" data-target="#unem"><div
+							class="sprite_heart_icon_outline"></div></a>
 
 					<div class="sprite_user_icon_outline dropdown">
 
@@ -87,3 +101,41 @@
 
 			</section>
 		</header>
+
+
+
+		<script type="text/javascript">
+			$("html").click(function(e) {
+				
+			if($(e.target).parent().attr("id") != "search"){
+				$("#search").css({visibility:"hidden"});
+				
+			}
+			
+			
+
+			});
+			$("#search_input").on("keyup",function(){
+				let searchVal = $("#search_input").val();
+				if(searchVal != ""){$("#search").css({visibility:"visible"});
+				$.ajax({
+					url: "/user/search",
+					type: "post",
+					data: {search : searchVal}
+				}).done(function(result){
+					
+					console.log(result);
+				});
+				
+				
+				/* $("#search").append('<a href="#" class="list-group-item list-group-item-action">Third item</a>') */}
+				
+				
+				
+				
+			});
+			
+			
+			
+			
+		</script>

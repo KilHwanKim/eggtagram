@@ -37,7 +37,7 @@
 
 						</div>
 
-						
+
 					</header>
 
 					<div class="img_section">
@@ -104,20 +104,21 @@
 					<div class="bottom_icons">
 						<div class="left_icons">
 							<div class="heart_btn" data-ano="${avo.ano }"
-									data-nickname="${avo.nickname }">
+								data-nickname="${avo.nickname }">
 								<div
 									class="sprite_heart_icon_outline  <c:if test="${avo.like_check ne 0 }"> on</c:if> "
-									data-name="heartbeat" ></div>
+									data-name="heartbeat"></div>
 							</div>
 							<a href="/article/detail/${avo.ano }"><div
 									class="sprite_bubble_icon"></div> </a>
-							<div class="sprite_share_icon" data-toggle="modal" data-target="#unem"></div>
+
+
 						</div>
-						
+
 					</div>
 
 					<div class="likes m_text">
-						좋아요 <span id="count${avo.ano }"> ${avo.like_count }</span>  개
+						좋아요 <span id="count${avo.ano }"> ${avo.like_count }</span> 개
 					</div>
 					<div class="comment_container">
 
@@ -183,7 +184,7 @@
 			<article class="recommend">
 				<header class="reco_header">
 					<div>회원님을 위한 추천</div>
-					
+
 				</header>
 				<c:forEach items="${recommand_list}" var="uvo">
 					<div class="thumb_user">
@@ -259,10 +260,9 @@
 
 		});
 		$(document).on("click", ".heart_btn", function() {
-			
+
 			let anoval = $(this).data("ano");
 			let nicknameval = $(this).data("nickname");
-			
 
 			if ($(this).children('div').hasClass("on") === true) {
 
@@ -291,7 +291,8 @@
 
 				});
 
-			};
+			}
+			;
 			$.ajax({
 				url : "/like/count",
 				type : "post",
@@ -299,7 +300,7 @@
 					ano : anoval
 				}
 			}).done(function(e) {
-				
+
 				$("#count" + anoval).text(e);
 
 			});
