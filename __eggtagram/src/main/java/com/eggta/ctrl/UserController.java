@@ -84,6 +84,12 @@ public class UserController {
 		}
 		logger.info(">>> uvo의 eamil:" + uvo.getEmail());
 		UserVO dbinfo = usv.login(uvo.getEmail());
+		
+		if (dbinfo == null) {
+			String msg = "로그인실패";
+			reAttr.addFlashAttribute("result", msg);
+			return "redirect:/user/login";
+		}
 		String PWD = dbinfo.getPwd();
 		logger.info(">>>dbinfo의 비밀번호 " + dbinfo.getPwd());
 		boolean isEqual = bcpEncoder.matches(uvo.getPwd(), PWD);
