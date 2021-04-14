@@ -33,6 +33,17 @@
 	z-index: 10;
 	border-radius: 4px;
 	top: 50px;
+	visibility: hidden;
+	width: 250px;
+}
+
+#search img {
+	width: 30px;
+}
+
+#search div {
+	display: flex;
+	align-items: center;
 }
 </style>
 
@@ -53,10 +64,13 @@
 				<div class="search_field">
 					<input type="text" placeholder="검색" tabindex="0" id="search_input">
 					<div class="list-group" id="search">
-						<a href="#" class="list-group-item list-group-item-action">First
-							item</a> <a href="#" class="list-group-item list-group-item-action">Second
-							item</a> <a href="#" class="list-group-item list-group-item-action">Third
-							item</a>
+						
+
+
+
+
+
+
 					</div>
 					<div class="fake_field">
 						<span class=sprite_small_search_icon></span> <span>검색</span>
@@ -106,36 +120,51 @@
 
 		<script type="text/javascript">
 			$("html").click(function(e) {
-				
-			if($(e.target).parent().attr("id") != "search"){
-				$("#search").css({visibility:"hidden"});
-				
-			}
-			
-			
+
+				if ($(e.target).parent().attr("id") != "search") {
+					$("#search").css({
+						visibility : "hidden"
+					});
+
+				}
 
 			});
-			$("#search_input").on("keyup",function(){
-				let searchVal = $("#search_input").val();
-				if(searchVal != ""){$("#search").css({visibility:"visible"});
-				$.ajax({
-					url: "/user/search",
-					type: "post",
-					data: {search : searchVal}
-				}).done(function(result){
-					
-					console.log(result);
-				});
-				
-				
-				/* $("#search").append('<a href="#" class="list-group-item list-group-item-action">Third item</a>') */}
-				
-				
-				
-				
-			});
-			
-			
-			
-			
+			$("#search_input")
+					.on(
+							"keyup",
+							function() {
+								let searchVal = $("#search_input").val();
+								if (searchVal != "") {
+									$("#search").css({
+										visibility : "visible"
+									});
+									$.ajax({
+										url : "/user/search",
+										type : "post",
+										data : {
+											search : searchVal
+										}
+									}).done(function(result) {
+										$("#search").empty();
+										$(result).find('List item').each(function() {
+											let nickname =$('nickname', this).text();
+											divi = '<div class="list-group-item list-group-item-action">'
+											+ '<img src="/resources/f-instagram-master/imgs/default.jpg" class="rounded-circle mr-3"> <span class="align-self-center">'
+											+ '<a href="user/profile/'
+											+nickname
+											+ '">'
+											+nickname
+											+'</a>';
+											$("#search").append(divi);
+											
+											
+											
+										
+										});
+											
+									});
+
+									/* $("#search").append('<a href="#" class="list-group-item list-group-item-action">Third item</a>') */}
+
+							});
 		</script>

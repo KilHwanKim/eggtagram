@@ -104,6 +104,14 @@ public class UserController {
 	public String profile(Model model, @PathVariable String nickname) {
 		logger.info(">>> test nickname = " + nickname);
 		model.addAttribute("uvo", usv.getMember(nickname));
+		
+		
+		
+		if (usv.getMember(nickname) == null)
+		{
+			return "/user/error";
+			
+		}
 		List<ArticleVO> list = asv.getprofile(nickname);
 		logger.info(">>> test list" + list.toString());
 		for (ArticleVO avo : list) {
@@ -234,8 +242,23 @@ public class UserController {
 	@PostMapping("/search")
 	public List<UserVO> search(@RequestParam("search") String search){
 		
-		return usv.getAuto(search);
+		List <UserVO>search_list =usv.getAuto(search);
 		
+		for (UserVO uvo : search_list) {
+			String profile="";
+			FileVO fvo = fsv.getFile(uvo.getNickname());
+			if(fvo != null) {
+				profile = fvo.getSavedir() + "\\" + fvo.getUuid()  + fvo.getFname();
+			}
+			uvo.setThumb(profile);
+		}
+		
+		return search_list;
+		
+	}
+	@GetMapping("/error")
+	public void error() {
+		logger.info(">>> /user/error - GET");
 	}
 
 }
