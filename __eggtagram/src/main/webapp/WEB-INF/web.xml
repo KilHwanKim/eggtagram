@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-         id="WebApp_ID" version="3.1">
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
 
-	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+	<!-- The definition of the Root Spring Container shared by all Servlets 
+		and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
@@ -12,7 +13,16 @@
 		/WEB-INF/spring/security-context.xml
 		</param-value>
 	</context-param>
-	
+
+	<error-page>
+
+		<error-code>404</error-code>
+
+		<location>/WEB-INF/views/error/404.jsp</location>
+
+	</error-page>
+
+
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -27,20 +37,20 @@
 			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
-		
+
 		<multipart-config>
-		<location>C:\\_java\\_spring\\workspace\\uploads</location>
-		<max-file-size>1048576</max-file-size>
-		<max-request-size>10485760</max-request-size>
-		<file-size-threshold>1048576</file-size-threshold>
+			<location>C:\\_java\\_spring\\workspace\\uploads</location>
+			<max-file-size>1048576</max-file-size>
+			<max-request-size>10485760</max-request-size>
+			<file-size-threshold>1048576</file-size-threshold>
 		</multipart-config>
 	</servlet>
-		
+
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
+
 	<filter>
 		<filter-name>encoding</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
