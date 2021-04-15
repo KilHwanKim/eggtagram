@@ -184,6 +184,7 @@
 			<article class="recommend">
 				<header class="reco_header">
 					<div>회원님을 위한 추천</div>
+					<div class="more"> <a href="#" class="text-dark">모두 보기</a> </div>
 
 				</header>
 				<c:forEach items="${recommand_list}" var="uvo">

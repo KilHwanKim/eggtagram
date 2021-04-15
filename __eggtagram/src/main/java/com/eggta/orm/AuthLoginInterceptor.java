@@ -19,7 +19,7 @@ public class AuthLoginInterceptor extends HandlerInterceptorAdapter{
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		Object obj = session.getAttribute("login");
-		logger.info("obj 됩니까?");
+		logger.info("obj 됩니까?"+ obj);
 		
 		
 		if (obj == null) {

@@ -150,7 +150,7 @@
 											let nickname =$('nickname', this).text();
 											divi = '<div class="list-group-item list-group-item-action">'
 											+ '<img src="/resources/f-instagram-master/imgs/default.jpg" class="rounded-circle mr-3"> <span class="align-self-center">'
-											+ '<a href="user/profile/'
+											+ '<a class="text-dark" href="user/profile/'
 											+nickname
 											+ '">'
 											+nickname
