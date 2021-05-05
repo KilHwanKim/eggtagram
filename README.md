@@ -5,6 +5,9 @@
 ## 배포는 
 [여기서](http://eggman9298.cafe24.com/)   (~2021.08.19)
 ------------------  
+## css 참고 
+- boostrap4 사용
+- [css 참고](https://github.com/kindfamily/f-instagram) kindfamily님이 만드신 css를 사용하였습니다.
 
 ## 주요 기술
 - 로그인 / 회원가입(중복 체크)
