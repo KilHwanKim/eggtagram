@@ -11,9 +11,11 @@ body {
 
 .sprite_write_logo {
     display: inline-block;
-    background: url('../imgs/background01.png') no-repeat -94px -72px;
+    background: url('../imgs/eggta.png') no-repeat 0px 0px;
     width: 103px;
     height: 29px;
+    background-size: 100% 100%;
+    
 }
 
 .sprite_compass_icon {
@@ -113,9 +115,11 @@ body {
 
 .sprite_insta_big_logo {
     display: inline-block;
-    background: url('../imgs/background02.png') no-repeat -98px -150px;
+    background: url('../imgs/eggta.png') no-repeat 0px 0px;
     width: 175px;
     height: 51px;
+    background-size: 100% 100%;
+    
 }
 
 .sprite_plus_icon {

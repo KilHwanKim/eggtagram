@@ -155,8 +155,15 @@
 
 
 			</c:forEach>
+			<article id="itemA">
+				<div class="item">내용</div>
+				<div class="item">내용</div>
+				<div class="item">세번째</div>
+		
+			</article>
 		</div>
-		<input type="hidden" id="page" value="1">
+
+
 
 		<div class="side_box">
 			<div class="user_profile">
@@ -177,6 +184,7 @@
 					</div>
 					<div class="ko_name">${login.nickname }</div>
 				</div>
+
 			</div>
 
 
@@ -184,7 +192,9 @@
 			<article class="recommend">
 				<header class="reco_header">
 					<div>회원님을 위한 추천</div>
-					<div class="more"> <a href="#" class="text-dark">모두 보기</a> </div>
+					<div class="more">
+						<a href="#" class="text-dark">모두 보기</a>
+					</div>
 
 				</header>
 				<c:forEach items="${recommand_list}" var="uvo">
@@ -222,6 +232,7 @@
 </section>
 
 </section>
+
 
 <script type="text/javascript">
 	$(function() {

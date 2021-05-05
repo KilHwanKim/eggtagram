@@ -24,7 +24,7 @@
 	</select>
 	
 	<select id="all" resultType="avo">
-	select * from tbl_article order by regdate desc limit 3
+	select * from tbl_article order by regdate desc limit 0,3
 	
 	
 	</select>
