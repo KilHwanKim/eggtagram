@@ -56,13 +56,15 @@
 						<div class="user_name">${uvo.nickname }
 							<c:if test="${!(uvo.nickname eq login.nickname) }">
 
-								<c:forEach items="${follower_list }" var="nick">
+								<c:forEach items="${follower_list }" var="fvo">
 
-									<c:if test="${nick == login.nickname }">
+									<c:if test="${fvo.follower eq login.nickname }">
 
 										<c:set var="flag" value="1" />
+										
 									</c:if>
 								</c:forEach>
+							
 
 
 								<c:if test="${(flag eq null) }">

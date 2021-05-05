@@ -38,7 +38,7 @@
 		<interceptor>
 			
 			<mapping path="/**" />
-			
+			<exclude-mapping path="/resources/**" />
 			<exclude-mapping path="/user/login" />
 			<exclude-mapping path="/user/signup" />
 			<exclude-mapping path="/user/logout" />
